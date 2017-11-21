@@ -32,6 +32,11 @@ call plug#end()
 " Pathogen for runtime path manipulation
 execute pathogen#infect()
 
+" Colorscheme
+syntax enable
+set background=dark
+colorscheme solarized
+
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
 
