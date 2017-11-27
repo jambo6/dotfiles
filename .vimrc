@@ -4,19 +4,28 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Basics
 syntax on
+set number " Show line numbers
+set showmatch " Highlights matching parentheses when highlighted
+set wildmenu " Graphical representation for autocompletion
+set hls " Highlighted search on
+
 
 " Leader key for shortcuts
 let mapleader=","
 
-" Plugin manager (vim-plug)
+
+" Plugin manager (vim-plug) // Install with :PlugInstall
 " Command is 'Plug owner_repo/name_repo' (straight from github)
-" use :PlugInstall to install plugs
 call plug#begin('~/.vim/plugged')
 
 " Github plugin
 Plug 'tpope/vim-fugitive'
 	nmap <leader>gs :Gstatus<CR>:resize 15<CR>
+
+" Nerd commenter
+Plug 'scrooloose/nerdcommenter'
 
 " Allows for tmux to be used through vim for matlab
 Plug 'epeli/slimux'
@@ -29,11 +38,14 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
+
+
 " Pathogen for runtime path manipulation
 execute pathogen#infect()
 
 " Colorscheme
 syntax enable
+set t_Co=256
 set background=dark
 colorscheme solarized
 
@@ -45,19 +57,22 @@ filetype plugin indent on
 
 " Airline status bar
 let g:airline_theme='bubblegum' 
-" The following are from https://dougblack.io/words/a-good-vimrc.html
-set number " Show line numbers
-set showmatch " Highlights matching parentheses when highlighted
-set wildmenu " Graphical representation for autocompletion
-
-" Numbers become relative to current line
-" :set relativenumber
-
-" Search stuff
-set hls " Highlighted search on
 
 " Inserted to get tmux screen same color
 set term=screen-256color
 
 " Set keybindings, note CR is carriage-return i.e. Enter
 nmap <CR> o<Esc>
+
+" Nerd commenter settings
+let g:NERDSpaceDelims = 1
+
+" Open new splits to right and bottom
+set splitbelow
+set splitright
+
+" Mouse
+if has('mouse')
+	set mouse=a
+endif
+:set ttymouse=xterm2

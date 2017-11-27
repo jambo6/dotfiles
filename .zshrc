@@ -42,8 +42,13 @@ alias del="trash"
 alias ohmyzsh="mate ~/.oh-my-zsh"
 alias work="cd ~/Documents/work"
 alias cheatsheets="cd ~/Documents/stuff/cheatsheets"
-alias itermcheat="vim ~/Documents/stuff/cheatsheets/iterm.txt"
-alias matlabcheat="vim ~/Documents/stuff/cheatsheets/matlab.txt"
+alias cheatiterm="vim ~/Documents/stuff/cheatsheets/iterm.txt"
+alias cheatmatlab="vim ~/Documents/stuff/cheatsheets/matlab.txt"
+alias cheatvim="vim ~/Documents/stuff/cheatsheets/vim.txt"
+alias cheattmux="vim ~/Documents/stuff/cheatsheets/tmux.txt"
+alias cheatgit="vim ~/Documents/stuff/cheatsheets/git.txt"
+alias matlabterm="matlab -nodesktop -nodisplay"
+
 
 # Git aliases
 alias ga="git add"
@@ -64,4 +69,5 @@ alias gf="git reflog"
 
 
 # Add to path
+#
 export PATH=/Applications/MATLAB_R2017a.app/bin:$PATH
