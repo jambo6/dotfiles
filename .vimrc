@@ -59,7 +59,7 @@ filetype plugin indent on
 let g:airline_theme='bubblegum' 
 
 " Inserted to get tmux screen same color
-set term=screen-256color
+" set term=screen-256color
 
 " Set keybindings, note CR is carriage-return i.e. Enter
 nmap <CR> o<Esc>

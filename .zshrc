@@ -1,5 +1,7 @@
 # if you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+# Current work location
+alias work="cd ~/Documents/work/lpipnla/"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
@@ -40,14 +42,13 @@ alias srczsh="source ~/.zshrc"
 alias clc="clear"
 alias del="trash"
 alias ohmyzsh="mate ~/.oh-my-zsh"
-alias work="cd ~/Documents/work"
 alias cheatsheets="cd ~/Documents/stuff/cheatsheets"
 alias cheatiterm="vim ~/Documents/stuff/cheatsheets/iterm.txt"
 alias cheatmatlab="vim ~/Documents/stuff/cheatsheets/matlab.txt"
 alias cheatvim="vim ~/Documents/stuff/cheatsheets/vim.txt"
 alias cheattmux="vim ~/Documents/stuff/cheatsheets/tmux.txt"
 alias cheatgit="vim ~/Documents/stuff/cheatsheets/git.txt"
-alias matlabterm="matlab -nodesktop -nodisplay"
+alias tmatlab="matlab -nodesktop -nodisplay"
 
 
 # Git aliases
@@ -56,8 +57,8 @@ alias gp="git push"
 alias gl="git log"
 alias gs="git status"
 alias gd="git diff"
-alias gm="git commit -m"
-alias gma="git commit -am"
+alias gcm="git commit -m"
+alias gcma="git commit -am"
 alias gb="git branch"
 alias gc="git checkout"
 alias gra="git remote add"
