@@ -53,6 +53,8 @@ alias tmatlab="matlab -nodesktop -nodisplay"
 
 # Git aliases
 alias ga="git add"
+alias gau="git add -u"
+alias gat="git add -u :/"
 alias gp="git push"
 alias gl="git log"
 alias gs="git status"
