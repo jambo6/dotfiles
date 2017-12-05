@@ -11,6 +11,12 @@ set showmatch " Highlights matching parentheses when highlighted
 set wildmenu " Graphical representation for autocompletion
 set hls " Highlighted search on
 
+" Colorscheme
+let g:onedark_termcolors=16
+let g:onedark_terminal_italics=0
+set termguicolors
+syntax on
+colorscheme onedark
 
 " Leader key for shortcuts
 let mapleader=","
@@ -38,24 +44,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
-
-
 " Pathogen for runtime path manipulation
 execute pathogen#infect()
-
-" Colorscheme
-if (empty($TMUX))
-	  if (has("nvim"))
-		  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-	  endif
-	  if (has("termguicolors"))
-		  set termguicolors
-	  endif
-endif
-let g:onedark_termcolors=16
-set termguicolors
-syntax on
-colorscheme onedark
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
@@ -75,6 +65,7 @@ set term=screen-256color
 
 " Set keybindings, note CR is carriage-return i.e. Enter
 nmap <CR> o<Esc>
+nmap <leader>nt :NERDTree<CR>
 
 " Nerd commenter settings
 let g:NERDSpaceDelims = 1
