@@ -18,6 +18,7 @@ set termguicolors
 syntax on
 colorscheme onedark
 
+
 " Leader key for shortcuts
 let mapleader=","
 
@@ -41,6 +42,12 @@ Plug 'epeli/slimux'
 " Status/tabline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" Autoclose
+Plug 'Townk/vim-autoclose'
+
+" Completion engine
+Plug 'valloric/youcompleteme'
 
 call plug#end()
 
@@ -66,6 +73,10 @@ set term=screen-256color
 " Set keybindings, note CR is carriage-return i.e. Enter
 nmap <CR> o<Esc>
 nmap <leader>nt :NERDTree<CR>
+nmap <leader>c :w<CR> :Dispatch<CR>
+
+" Set esc dely to low
+set ttimeoutlen=50
 
 " Nerd commenter settings
 let g:NERDSpaceDelims = 1
@@ -74,8 +85,21 @@ let g:NERDSpaceDelims = 1
 set splitbelow
 set splitright
 
+" split navigations (Ctrl-j down, Ctrl-k up, etc)
+nnoremap <c-j> <c-w><c-j>
+nnoremap <c-k> <c-w><c-k>
+nnoremap <c-l> <c-w><c-l>
+nnoremap <c-h> <c-w><c-h>
+
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+" enable folding with spacebar
+nnoremap <space> za
+
 " Mouse
 if has('mouse')
 	set mouse=a
 endif
 :set ttymouse=xterm2
+

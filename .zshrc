@@ -1,25 +1,18 @@
+export TERM="xterm-256color"
+
 # if you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Current work location
-alias work="cd ~/Documents/work/lpipnla/"
+alias work="cd ~/Documents/work/"
+alias myfenics="cd ~/Documents/work/fenics"
+alias mypython="cd ~/Documents/work/python"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it"ll load a random theme each time that oh-my-zsh is loaded.
+# Theme to load 
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="agnoster"
-
-# Set list of themes to load
-# Setting this variable when ZSH_THEME=random
-# cause zsh load theme from this variable instead of
-# looking in ~/.oh-my-zsh/themes/
-# An empty array have no effect
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
@@ -48,14 +41,16 @@ alias cheatmatlab="vim ~/Documents/stuff/cheatsheets/matlab.txt"
 alias cheatvim="vim ~/Documents/stuff/cheatsheets/vim.txt"
 alias cheattmux="vim ~/Documents/stuff/cheatsheets/tmux.txt"
 alias cheatgit="vim ~/Documents/stuff/cheatsheets/git.txt"
+alias cheatcpp="vim ~/Documents/stuff/cheatsheets/cpp.txt"
 alias tmatlab="matlab -nodesktop -nodisplay"
 
 
-# Git aliases
+# # Git aliases
 alias ga="git add"
 alias gau="git add -u"
 alias gat="git add -u :/"
 alias gp="git push"
+alias gpom="git push origin master"
 alias gl="git log"
 alias gs="git status"
 alias gd="git diff"
@@ -66,6 +61,7 @@ alias gc="git checkout"
 alias gra="git remote add"
 alias grr="git remote rm"
 alias gpu="git pull"
+alias gpuom="git pull origin master"
 alias gcl="git clone"
 alias gta="git tag -a -m"
 alias gf="git reflog"
@@ -74,3 +70,11 @@ alias gf="git reflog"
 # Add to path
 #
 export PATH=/Applications/MATLAB_R2017a.app/bin:$PATH
+
+
+# Functions
+# After mkdir, cd into it
+mkcd() {
+	mkdir -p "$*"
+	cd "$*"
+}
