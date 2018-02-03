@@ -36,8 +36,9 @@ Plug 'scrooloose/nerdcommenter'
 
 " Allows for tmux to be used through vim for matlab
 Plug 'epeli/slimux'
-	autocmd FileType matlab map <buffer> <Leader>l :SlimuxREPLSendLine<CR><down>0
-	autocmd FileType matlab vmap <buffer> <Leader>l :SlimuxREPLSendSelection<CR>
+	autocmd FileType python map <buffer> <Leader>l :SlimuxREPLSendLine<CR><down>0
+	autocmd FileType python vmap <buffer> <Leader>l :SlimuxREPLSendSelection<CR>
+	autocmd FileType python map <buffer> <Leader>b :SlimuxREPLSendBuffer<CR>
 
 " Status/tabline
 Plug 'vim-airline/vim-airline'
@@ -46,8 +47,14 @@ Plug 'vim-airline/vim-airline-themes'
 " Autoclose
 Plug 'Townk/vim-autoclose'
 
+" Surround
+Plug 'tpope/vim-surround'
+
 " Completion engine
 Plug 'valloric/youcompleteme'
+
+" Python indentation
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
@@ -72,14 +79,16 @@ set term=screen-256color
 
 " Set keybindings, note CR is carriage-return i.e. Enter
 nmap <CR> o<Esc>
-nmap <leader>nt :NERDTree<CR>
 nmap <leader>c :w<CR> :Dispatch<CR>
+imap jj <Esc>
 
 " Set esc dely to low
 set ttimeoutlen=50
 
-" Nerd commenter settings
-let g:NERDSpaceDelims = 1
+" NERDTree settings
+nmap <leader>nt :NERDTree<CR>
+nmap <leader>nt :NERDTreeToggle<CR>
+let g:NERDSpaceDelims = 1 " Nerd commenter settings
 
 " Open new splits to right and bottom
 set splitbelow
@@ -102,4 +111,15 @@ if has('mouse')
 	set mouse=a
 endif
 :set ttymouse=xterm2
+
+" For proper python indentation
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix 
+
 
