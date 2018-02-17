@@ -18,6 +18,15 @@ set termguicolors
 syntax on
 colorscheme onedark
 
+" Remove esc delay
+set ttimeout
+set ttimeoutlen=100
+set timeoutlen=3000
+augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+augroup END
 
 " Leader key for shortcuts
 let mapleader=","
@@ -44,8 +53,8 @@ Plug 'epeli/slimux'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" Autoclose
-Plug 'Townk/vim-autoclose'
+" " Autoclose
+" Plug 'Townk/vim-autoclose'
 
 " Surround
 Plug 'tpope/vim-surround'
@@ -81,6 +90,8 @@ set term=screen-256color
 nmap <CR> o<Esc>
 nmap <leader>c :w<CR> :Dispatch<CR>
 imap jj <Esc>
+nmap <leader>* i#<Space>********** **********<Space>#<Esc>bhi<Space> 
+imap § #
 
 " Set esc dely to low
 set ttimeoutlen=50

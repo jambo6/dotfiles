@@ -6,6 +6,7 @@ export TERM="xterm-256color"
 alias work="cd ~/Documents/work/"
 alias myfenics="cd ~/Documents/work/fenics"
 alias mypython="cd ~/Documents/work/python"
+alias brinkman="cd ~/Documents/work/numerics/ricardo/my_code/brinkman"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
