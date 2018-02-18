@@ -1,5 +1,6 @@
 export TERM="xterm-256color"
 
+
 # if you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Current work location
@@ -7,6 +8,9 @@ alias work="cd ~/Documents/work/"
 alias myfenics="cd ~/Documents/work/fenics"
 alias mypython="cd ~/Documents/work/python"
 alias brinkman="cd ~/Documents/work/numerics/ricardo/my_code/brinkman"
+
+# For tmux colors
+alias tmux="TERM=screen-256color-bce tmux"
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
