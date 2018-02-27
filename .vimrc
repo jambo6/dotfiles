@@ -30,6 +30,9 @@ let mapleader=","
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
 
+" Relative pagenumbers
+" set relativenumber
+
 " Enable file type detection and do language-dependent indenting.
 filetype plugin indent on
 
@@ -72,6 +75,7 @@ augroup END
 	nmap <leader>* i#<Space>**********<Space>**********<Space>#<Esc>bhi 
 	imap jj <Esc>
 	imap § #
+	nmap Q :q!<CR>
 
 	" }}}2
 
@@ -81,24 +85,31 @@ augroup END
 	nnoremap <c-k> <c-w><c-k>
 	nnoremap <c-l> <c-w><c-l>
 	nnoremap <c-h> <c-w><c-h>
+	" Shift or control
+	nnoremap <s-j> <c-w><c-j>
+	nnoremap <s-k> <c-w><c-k>
+	nnoremap <s-l> <c-w><c-l>
+	nnoremap <s-h> <c-w><c-h>
 	" }}}2
 
 " }}}1
 
 " UI {{{1
 
-" Colorscheme
+" onedark {{{2
 let g:onedark_termcolors=16
 let g:onedark_terminal_italics=0
 colorscheme onedark
 
 " Airline status bar
-let g:airline_theme='onedark' 
+let g:airline_theme='onedark'
+" }}}2
+
 let g:airline_right_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_left_alt_sep= ''
 let g:airline_left_sep = ''
-
+"
 " }}}1
 
 " FUNCTIONS {{{1
@@ -113,7 +124,7 @@ call plug#begin('~/.vim/plugged')
 
 	" Github plugin
 	Plug 'tpope/vim-fugitive'
-	 nmap <leader>gs :Gstatus<CR>:resize 15<CR>
+	nmap <leader>gs :Gstatus<CR>:resize 15<CR>
 
 	" Nerd commenter
 	Plug 'scrooloose/nerdcommenter'
@@ -129,13 +140,13 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline-themes'
 
 	" " Autoclose
-	" Plug 'Townk/vim-autoclose'
+	Plug 'Townk/vim-autoclose'
 
 	" Surround
 	Plug 'tpope/vim-surround'
 
 	" Completion engine
-	Plug 'valloric/youcompleteme'
+	" Plug 'valloric/youcompleteme'
 
 	" Python indentation
 	Plug 'vim-scripts/indentpython.vim'
@@ -145,6 +156,9 @@ call plug#begin('~/.vim/plugged')
 
 	" Python as and IDE
 	Plug 'python-mode/python-mode'
+
+	" Powerline fonts
+	Plug 'powerline/powerline-fonts'
 
 call plug#end()
 " }}}2
@@ -162,6 +176,7 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore annoying files in NERDTree
 """ YouCompeteMe
 let g:ycm_autoclose_preview_window_after_completion=1 " Ensures autocomp window goes when done with it
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+set pumheight=3
 
 
 """ Syntastic
@@ -179,6 +194,14 @@ let g:syntastic_check_on_wq = 0
 """ Python-mode sttings
 let g:pymode_python = 'python3'
 let g:pymode_rope=0 " Supposed speed up
+let g:pymode_lint_checkers=['pyflakes', 'pep8']
+let g:pymode_virtualenv_path = "/Users/jambo/anaconda3"
+" To prevent folding speed reduce
+augroup unset_folding_in_insert_mode
+    autocmd!
+    autocmd InsertEnter *.py setlocal foldmethod=marker
+    autocmd InsertLeave *.py setlocal foldmethod=expr
+augroup END
 
 " }}}2
 
@@ -210,10 +233,14 @@ au BufNewFile,BufRead *.py
 " FOLDING {{{1
 "
 " enable folding with spacebar
+
 nnoremap <space> za
 
 " Set colors of folds
 hi Folded ctermfg=2
+
+set foldlevel=99
+autocmd BufNewFile,BufRead *.vimrc set foldlevel=0 
 
 " }}}1
 

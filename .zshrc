@@ -7,7 +7,8 @@ export TERM="xterm-256color"
 alias work="cd ~/Documents/work/"
 alias myfenics="cd ~/Documents/work/fenics"
 alias mypython="cd ~/Documents/work/python"
-alias brinkman="cd ~/Documents/work/numerics/ricardo/my_code/brinkman"
+alias ml="cd ~/Documents/work/revon/ml_raschka"
+alias mytf="cd ~/Documents/work/tensorflow"
 
 # For tmux colors
 alias tmux="TERM=screen-256color-bce tmux"
@@ -33,6 +34,7 @@ source $ZSH/oh-my-zsh.sh
 # My things
 
 # Aliases
+alias python="python3"
 alias zshrc="vim ~/git/dotfiles/.zshrc"
 alias vimrc="vim ~/git/dotfiles/.vimrc"
 alias gitdot="cd ~/git/dotfiles"
@@ -47,6 +49,7 @@ alias cheatvim="vim ~/Documents/stuff/cheatsheets/vim.txt"
 alias cheattmux="vim ~/Documents/stuff/cheatsheets/tmux.txt"
 alias cheatgit="vim ~/Documents/stuff/cheatsheets/git.txt"
 alias cheatcpp="vim ~/Documents/stuff/cheatsheets/cpp.txt"
+alias cheatpython="vim ~/Documents/stuff/cheatsheets/python.txt"
 alias tmatlab="matlab -nodesktop -nodisplay"
 
 
@@ -72,9 +75,19 @@ alias gta="git tag -a -m"
 alias gf="git reflog"
 
 
+# # Virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# # Tensorflow
+# Running without venv
+alias runtf="source ~/tensorflow/bin/activate" 
+
+
 # Add to path
 #
 export PATH=/Applications/MATLAB_R2017a.app/bin:$PATH
+export PATH=~/anaconda3/bin:$PATH
 
 
 # Functions
@@ -83,3 +96,8 @@ mkcd() {
 	mkdir -p "$*"
 	cd "$*"
 }
+
+# Change prompt
+DEFAULT_USER=username
+
+
