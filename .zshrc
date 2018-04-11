@@ -9,6 +9,8 @@ alias myfenics="cd ~/Documents/work/fenics"
 alias mypython="cd ~/Documents/work/python"
 alias ml="cd ~/Documents/work/revon/ml_raschka"
 alias mytf="cd ~/Documents/work/tensorflow"
+alias kaggle="cd ~/Documents/work/kaggle"
+alias projecteuler="cd ~/Documents/work/project_euler"
 
 # For tmux colors
 alias tmux="TERM=screen-256color-bce tmux"
@@ -51,6 +53,7 @@ alias cheatgit="vim ~/Documents/stuff/cheatsheets/git.txt"
 alias cheatcpp="vim ~/Documents/stuff/cheatsheets/cpp.txt"
 alias cheatpython="vim ~/Documents/stuff/cheatsheets/python.txt"
 alias tmatlab="matlab -nodesktop -nodisplay"
+alias todothings="vim ~/Documents/stuff/todo/things.txt"
 
 
 # # Git aliases
@@ -79,6 +82,9 @@ alias gf="git reflog"
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
 
+# # NAG env variable
+export NAG_KUSARI_FILE=$HOME/NAG/mbmi625dcl/nag.key
+
 # # Tensorflow
 # Running without venv
 alias runtf="source ~/tensorflow/bin/activate" 
@@ -86,7 +92,7 @@ alias runtf="source ~/tensorflow/bin/activate"
 
 # Add to path
 #
-export PATH=/Applications/MATLAB_R2017a.app/bin:$PATH
+export PATH=/Applications/MATLAB_R2017b.app/bin:$PATH
 export PATH=~/anaconda3/bin:$PATH
 
 

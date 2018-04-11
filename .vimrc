@@ -23,6 +23,7 @@ set number " Show line numbers
 set showmatch " Highlights matching parentheses when highlighted
 set wildmenu " Graphical representation for autocompletion
 set hls " Highlighted search on
+set modifiable " For flake8
 
 " Leader key for shortcuts
 let mapleader=","
@@ -63,19 +64,22 @@ augroup END
 	" Random shortcuts {{{2
 	"
 	" Make enter behave sensibly
-	nmap <CR> o<Esc>
+	nnoremap <CR> o<Esc>
 
 	" ,c saves and dispatches (c++)
-	nmap <leader>c :w<CR> :Dispatch<CR>
+	nnoremap <leader>c :w<CR> :Dispatch<CR>
 
 	" Double esc is save
 	map <Esc><Esc> :w<CR>
 
 	" Useful shortcuts
-	nmap <leader>* i#<Space>**********<Space>**********<Space>#<Esc>bhi 
+	nnoremap <leader>* i#<Space>**********<Space>**********<Space>#<Esc>bhi 
+	nnoremap <leader>p* iprint('***************************************')<Esc>
 	imap jj <Esc>
 	imap § #
-	nmap Q :q!<CR>
+	nnoremap Q :q!<CR>
+	nnoremap <c-z> <nop>
+
 
 	" }}}2
 
@@ -140,13 +144,13 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline-themes'
 
 	" " Autoclose
-	Plug 'Townk/vim-autoclose'
+	" Plug 'Townk/vim-autoclose'
 
 	" Surround
 	Plug 'tpope/vim-surround'
 
 	" Completion engine
-	" Plug 'valloric/youcompleteme'
+	Plug 'valloric/youcompleteme'
 
 	" Python indentation
 	Plug 'vim-scripts/indentpython.vim'
@@ -159,6 +163,9 @@ call plug#begin('~/.vim/plugged')
 
 	" Powerline fonts
 	Plug 'powerline/powerline-fonts'
+	
+	" Flake8 syntax checker
+	Plug 'nvie/vim-flake8'
 
 call plug#end()
 " }}}2
@@ -179,29 +186,31 @@ map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 set pumheight=3
 
 
-""" Syntastic
-" Recommended New user settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-
 """ Python-mode sttings
 let g:pymode_python = 'python3'
-let g:pymode_rope=0 " Supposed speed up
-let g:pymode_lint_checkers=['pyflakes', 'pep8']
-let g:pymode_virtualenv_path = "/Users/jambo/anaconda3"
+" let g:pymode_lint_checkers=['pyflakes', 'pep8']
+let g:pymode_virtualenv_path="/Users/jambo/anaconda3"		" Lets python find anaconda installed modules
+
+" Python mode speed ups from the net {{{3
+
+let g:pymode_lint=0
+
 " To prevent folding speed reduce
 augroup unset_folding_in_insert_mode
     autocmd!
     autocmd InsertEnter *.py setlocal foldmethod=marker
     autocmd InsertLeave *.py setlocal foldmethod=expr
 augroup END
+
+let g:pymode_rope = 0
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope_complete_on_dot = 0
+let g:pymode_rope_autoimport = 0
+" }}}3
+
+
+""" Flake8
+" autocmd BufWritePost *.py call Flake8() 	" Flake on save
 
 " }}}2
 
