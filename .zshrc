@@ -5,6 +5,8 @@ export TERM="xterm-256color"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Current work location
 alias work="cd ~/Documents/work/"
+alias lein="cd ~/Documents/work/lein"
+alias revon="cd ~/Documents/work/revon"
 alias myfenics="cd ~/Documents/work/fenics"
 alias mypython="cd ~/Documents/work/python"
 alias ml="cd ~/Documents/work/revon/ml_raschka"
