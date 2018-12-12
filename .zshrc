@@ -4,15 +4,12 @@ export TERM="xterm-256color"
 # if you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 # Current work location
-alias work="cd ~/Documents/work/"
-alias lein="cd ~/Documents/work/lein"
-alias revon="cd ~/Documents/work/revon"
-alias myfenics="cd ~/Documents/work/fenics"
+alias phd="cd ~/Documents/Work/phd"
+alias codeactual="cd ~/Documents/Work/phd/code/actual"
+alias codepractice="cd ~/Documents/Work/phd/code/practice"
+alias chf="cd ~/Documents/work/revon/chf_project"
 alias mypython="cd ~/Documents/work/python"
-alias ml="cd ~/Documents/work/revon/ml_raschka"
-alias mytf="cd ~/Documents/work/tensorflow"
-alias kaggle="cd ~/Documents/work/kaggle"
-alias projecteuler="cd ~/Documents/work/project_euler"
+alias sshmaths="ssh morrill@gate.maths.ox.ac.uk"
 
 # For tmux colors
 alias tmux="TERM=screen-256color-bce tmux"
@@ -38,7 +35,7 @@ source $ZSH/oh-my-zsh.sh
 # My things
 
 # Aliases
-alias python="python3"
+# alias python="python3"
 alias zshrc="vim ~/git/dotfiles/.zshrc"
 alias vimrc="vim ~/git/dotfiles/.vimrc"
 alias gitdot="cd ~/git/dotfiles"
@@ -46,6 +43,8 @@ alias srczsh="source ~/.zshrc"
 alias clc="clear"
 alias del="trash"
 alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Cheatsheets
 alias cheatsheets="cd ~/Documents/stuff/cheatsheets"
 alias cheatiterm="vim ~/Documents/stuff/cheatsheets/iterm.txt"
 alias cheatmatlab="vim ~/Documents/stuff/cheatsheets/matlab.txt"

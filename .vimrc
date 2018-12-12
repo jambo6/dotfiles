@@ -76,7 +76,7 @@ augroup END
 	nnoremap <leader>* i#<Space>**********<Space>**********<Space>#<Esc>bhi 
 	nnoremap <leader>p* iprint('***************************************')<Esc>
 	imap jj <Esc>
-	imap § #
+	imap § <leader>l
 	nnoremap Q :q!<CR>
 	nnoremap <c-z> <nop>
 
@@ -150,7 +150,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-surround'
 
 	" Completion engine
-	Plug 'valloric/youcompleteme'
+	" Plug 'valloric/youcompleteme'
 
 	" Python indentation
 	Plug 'vim-scripts/indentpython.vim'
