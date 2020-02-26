@@ -2,7 +2,8 @@
 
 " Below is for folding
 " vim:fdm=marker
-
+set foldmethod=marker
+set timeoutlen=1000 ttimeoutlen=0
 
 " TODO {{{1
 " }}}1
@@ -73,8 +74,6 @@ augroup END
 	map <Esc><Esc> :w<CR>
 
 	" Useful shortcuts
-	nnoremap <leader>* i#<Space>**********<Space>**********<Space>#<Esc>bhi 
-	nnoremap <leader>p* iprint('***************************************')<Esc>
 	imap jj <Esc>
 	imap § <leader>l
 	nnoremap Q :q!<CR>
@@ -143,14 +142,14 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 
-	" " Autoclose
-	" Plug 'Townk/vim-autoclose'
+	" Autoclose
+	Plug 'Raimondi/delimitMate'
 
 	" Surround
 	Plug 'tpope/vim-surround'
 
 	" Completion engine
-	" Plug 'valloric/youcompleteme'
+	" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --system-libclang'}
 
 	" Python indentation
 	Plug 'vim-scripts/indentpython.vim'
@@ -159,13 +158,16 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-unimpaired'
 
 	" Python as and IDE
-	Plug 'python-mode/python-mode'
+	Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
 
 	" Powerline fonts
 	Plug 'powerline/powerline-fonts'
 	
 	" Flake8 syntax checker
 	Plug 'nvie/vim-flake8'
+
+	" Latex
+	Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 call plug#end()
 " }}}2
@@ -182,14 +184,18 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore annoying files in NERDTree
 
 """ YouCompeteMe
 let g:ycm_autoclose_preview_window_after_completion=1 " Ensures autocomp window goes when done with it
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>', '<Esc>']
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 set pumheight=3
 
 
 """ Python-mode sttings
 let g:pymode_python = 'python3'
+let g:pymode_breakpoint = 1
+let g:pymode_breakpoint_bind = '<leader>j'
 " let g:pymode_lint_checkers=['pyflakes', 'pep8']
-let g:pymode_virtualenv_path="/Users/jambo/anaconda3"		" Lets python find anaconda installed modules
+let g:pymode_virtualenv_path="/Users/jambo/miniconda3"		" Lets python find anaconda installed modules
 
 " Python mode speed ups from the net {{{3
 
@@ -216,6 +222,11 @@ let g:pymode_rope_autoimport = 0
 
 " Pathogen for runtime path manipulation
 execute pathogen#infect()
+
+" Livetex
+autocmd Filetype tex setl updatetime=1
+let g:livepreview_previewer = 'open -a Preview'
+
 
 " }}}1 
 

@@ -1,15 +1,52 @@
 export TERM="xterm-256color"
 
-
 # if you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-# Current work location
-alias phd="cd ~/Documents/Work/phd"
-alias codeactual="cd ~/Documents/Work/phd/code/actual"
-alias codepractice="cd ~/Documents/Work/phd/code/practice"
-alias chf="cd ~/Documents/work/revon/chf_project"
-alias mypython="cd ~/Documents/work/python"
-alias sshmaths="ssh morrill@gate.maths.ox.ac.uk"
+alias phd="cd ~/Documents/PhD"
+alias code="cd ~/Documents/PhD/code"
+alias iterex="cd ~/Documents/PhD/code/iterex"
+alias wesad="cd ~/Documents/PhD/code/actual/wesad"
+alias sepsis="cd ~/Documents/PhD/code/actual/sepsis"
+alias framework="cd ~/Documents/PhD/code/actual/iterex_ml_frame"
+
+# Jupyter
+alias jl="jupyter lab"
+alias jls="jupyter notebook list"
+jstop () {
+	jupyter notebook stop $*
+}
+alias ajl="activate; jupyter lab"
+alias jlssh="ssh -L 9000:localhost:9000 morrill@havok.maths.ox.ac.uk"
+
+# Sphinx
+alias opendocs="open docs/build/html/index.html"
+alias makedocs="make -C ./docs html"
+
+# Term commands
+alias checkpython="ps -ef | grep python"
+alias killpython="pkill -9 python"
+
+# Run
+alias cutcookies="cookiecutter https://github.com/drivendata/cookiecutter-data-science"
+alias basecookiecutter="git clone https://github.com/jambo6/Base-project"
+
+# Git
+alias gs="git status"
+alias ga="git add"
+alias gr="git rm"
+alias gcm="git commit -m"
+alias gpom="git push origin master"
+alias gpod="git push origin develop"
+alias gcom="git checkout master"
+alias gcod="git checkout develop"
+
+# TMUX
+alias tconf="vim ~/.tmux.conf"
+alias tls="echo ; tmux ls; echo;"
+tnew() { tmux new -s $1 ; }
+tatt() { tmux a -t $1 ; }
+tkill() { tmux kill-session -t $1 ; }
+trename() { tmux rename-window $1 ;}
 
 # For tmux colors
 alias tmux="TERM=screen-256color-bce tmux"
@@ -26,7 +63,7 @@ ZSH_THEME="agnoster"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
+	z
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -35,7 +72,6 @@ source $ZSH/oh-my-zsh.sh
 # My things
 
 # Aliases
-# alias python="python3"
 alias zshrc="vim ~/git/dotfiles/.zshrc"
 alias vimrc="vim ~/git/dotfiles/.vimrc"
 alias gitdot="cd ~/git/dotfiles"
@@ -43,9 +79,10 @@ alias srczsh="source ~/.zshrc"
 alias clc="clear"
 alias del="trash"
 alias ohmyzsh="mate ~/.oh-my-zsh"
+alias runtb="tensorboard --logdir=logs/ --host localhost --port 8088"
 
 # Cheatsheets
-alias cheatsheets="cd ~/Documents/stuff/cheatsheets"
+alias cheatsheets="cd ~/Documents/other/cheatsheets"
 alias cheatiterm="vim ~/Documents/stuff/cheatsheets/iterm.txt"
 alias cheatmatlab="vim ~/Documents/stuff/cheatsheets/matlab.txt"
 alias cheatvim="vim ~/Documents/stuff/cheatsheets/vim.txt"
@@ -53,49 +90,20 @@ alias cheattmux="vim ~/Documents/stuff/cheatsheets/tmux.txt"
 alias cheatgit="vim ~/Documents/stuff/cheatsheets/git.txt"
 alias cheatcpp="vim ~/Documents/stuff/cheatsheets/cpp.txt"
 alias cheatpython="vim ~/Documents/stuff/cheatsheets/python.txt"
+alias cheattf="vim ~/Documents/stuff/cheatsheets/tensorflow.txt"
 alias tmatlab="matlab -nodesktop -nodisplay"
 alias todothings="vim ~/Documents/stuff/todo/things.txt"
 
 
-# # Git aliases
-alias ga="git add"
-alias gau="git add -u"
-alias gat="git add -u :/"
-alias gp="git push"
-alias gpom="git push origin master"
-alias gl="git log"
-alias gs="git status"
-alias gd="git diff"
-alias gcm="git commit -m"
-alias gcma="git commit -am"
-alias gb="git branch"
-alias gc="git checkout"
-alias gra="git remote add"
-alias grr="git remote rm"
-alias gpu="git pull"
-alias gpuom="git pull origin master"
-alias gcl="git clone"
-alias gta="git tag -a -m"
-alias gf="git reflog"
+# # Add to path
+# Conda
+. /opt/miniconda3/etc/profile.d/conda.sh
+conda activate base
+alias activate="conda activate ./env"
+alias base="conda activate base"
 
-
-# # Virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
-
-# # NAG env variable
-export NAG_KUSARI_FILE=$HOME/NAG/mbmi625dcl/nag.key
-
-# # Tensorflow
-# Running without venv
-alias runtf="source ~/tensorflow/bin/activate" 
-
-
-# Add to path
-#
-export PATH=/Applications/MATLAB_R2017b.app/bin:$PATH
-export PATH=~/anaconda3/bin:$PATH
-
+# npm
+export PATH=$PATH:/Users/jambo/.npm-global/bin
 
 # Functions
 # After mkdir, cd into it
@@ -103,8 +111,21 @@ mkcd() {
 	mkdir -p "$*"
 	cd "$*"
 }
+# makelatex() {
+	# python ~/.bash_scripts/compile_latex.py $1
+# }
+# # ssh() {
+	# # python ~/.bash_scripts/go_ssh.py $1
+# # }
+# cheat() {
+	# python ~/.bash_scripts/cheatsheets.py $1
+# }
+# add_py_root() {
+	# python ~/.bash_scripts/python_add_sources.py
+# }
 
 # Change prompt
 DEFAULT_USER=username
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
