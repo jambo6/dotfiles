@@ -1,0 +1,61 @@
+# Jupyter
+alias jl="jupyter lab"
+alias jls="jupyter notebook list"
+jstop () {
+	jupyter notebook stop $*
+}
+alias ajl="activate; jupyter lab"
+alias jlssh="ssh -L 9000:localhost:9000 morrill@havok.maths.ox.ac.uk"
+
+# Term commands
+alias checkpython="ps -ef | grep python"
+alias killpython="pkill -9 python"
+
+# Run
+alias cutcookies="cookiecutter https://github.com/drivendata/cookiecutter-data-science"
+alias basecookiecutter="git clone https://github.com/jambo6/Base-project"
+
+# Git
+alias gs="git status"
+alias ga="git add"
+alias gr="git rm"
+alias gcm="git commit -m"
+alias gpom="git push origin master"
+alias gpod="git push origin develop"
+alias gcom="git checkout master"
+alias gcod="git checkout develop"
+
+# TMUX
+alias tconf="vim ~/.tmux.conf"
+alias tls="echo ; tmux ls; echo;"
+tnew() { tmux new -s $1 ; }
+tatt() { tmux a -t $1 ; }
+tkill() { tmux kill-session -t $1 ; }
+trename() { tmux rename-window $1 ;}
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(
+	z
+)
+
+# Aliases
+alias zshrc="vim ~/git/dotfiles/.zshrc"
+alias vimrc="vim ~/git/dotfiles/.vimrc"
+alias gitdot="cd ~/git/dotfiles"
+alias srczsh="source ~/.zshrc"
+alias clc="clear"
+alias del="trash"
+alias ohmyzsh="mate ~/.oh-my-zsh"
+alias runtb="tensorboard --logdir=logs/ --host localhost --port 8088"
+
+
+# Functions
+# After mkdir, cd into it
+mkcd() {
+	mkdir -p "$*"
+	cd "$*"
+}
+
