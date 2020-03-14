@@ -18,7 +18,6 @@ set nocompatible
 " }}}1
 
 " GENERAL {{{1
-
 syntax on
 set number " Show line numbers
 set showmatch " Highlights matching parentheses when highlighted
@@ -28,6 +27,7 @@ set modifiable " For flake8
 
 " Leader key for shortcuts
 let mapleader=","
+let maplocalleader="\\"
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
@@ -143,13 +143,15 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline-themes'
 
 	" Autoclose
-	Plug 'Raimondi/delimitMate'
+	Plug 'Townk/vim-autoclose'	
+	let g:AutoClosePumvisible={"ENTER":"", "ESC":""}
+	" Plug 'Raimondi/delimitMate'
 
 	" Surround
 	Plug 'tpope/vim-surround'
 
 	" Completion engine
-	" Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --system-libclang'}
+	Plug 'valloric/youcompleteme', { 'do': './install.py --clang-completer --system-libclang'}
 
 	" Python indentation
 	Plug 'vim-scripts/indentpython.vim'
@@ -167,7 +169,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'nvie/vim-flake8'
 
 	" Latex
-	Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+	Plug 'lervag/vimtex'
 
 call plug#end()
 " }}}2
@@ -186,7 +188,10 @@ let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore annoying files in NERDTree
 let g:ycm_autoclose_preview_window_after_completion=1 " Ensures autocomp window goes when done with it
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_key_list_stop_completion = ['<C-y>', '<CR>', '<Esc>']
+let g:autoClosePumvisible = {"ENTER": "", "ESC": ""}
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+
+
 set pumheight=3
 
 
@@ -196,6 +201,7 @@ let g:pymode_breakpoint = 1
 let g:pymode_breakpoint_bind = '<leader>j'
 " let g:pymode_lint_checkers=['pyflakes', 'pep8']
 let g:pymode_virtualenv_path="/Users/jambo/miniconda3"		" Lets python find anaconda installed modules
+
 
 " Python mode speed ups from the net {{{3
 
@@ -223,9 +229,14 @@ let g:pymode_rope_autoimport = 0
 " Pathogen for runtime path manipulation
 execute pathogen#infect()
 
-" Livetex
-autocmd Filetype tex setl updatetime=1
-let g:livepreview_previewer = 'open -a Preview'
+" Vimtex
+let g:vimtex_view_method = 'skim'
+let g:vimtex_complete_enabled=1
+
+if !exists('g:ycm_semantic_triggers')
+	let g:ycm_semantic_triggers = {}
+endif
+au VimEnter * let g:ycm_semantic_triggers.tex=g:vimtex#re#youcompleteme
 
 
 " }}}1 
@@ -263,6 +274,5 @@ set foldlevel=99
 autocmd BufNewFile,BufRead *.vimrc set foldlevel=0 
 
 " }}}1
-
 
 

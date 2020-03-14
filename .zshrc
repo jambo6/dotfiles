@@ -1,3 +1,7 @@
+
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+
+
 export TERM="xterm-256color"
 
 # if you come from bash you might have to change your $PATH.
@@ -111,9 +115,9 @@ mkcd() {
 	mkdir -p "$*"
 	cd "$*"
 }
-# makelatex() {
-	# python ~/.bash_scripts/compile_latex.py $1
-# }
+makelatex() {
+	python ~/.bash_scripts/compile_latex.py $1
+}
 # # ssh() {
 	# # python ~/.bash_scripts/go_ssh.py $1
 # # }
@@ -127,5 +131,8 @@ mkcd() {
 # Change prompt
 DEFAULT_USER=username
 
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+# test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
+# if command -v pyenv 1>/dev/null 2>&1; then
+  # eval "$(pyenv init -)"
+# fi
