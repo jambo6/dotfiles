@@ -1,0 +1,375 @@
+" Initialisation
+
+" Use Vim settings, rather than Vi settings (much better!).
+" This must be first, because it changes other options as a side effect.
+set nocompatible
+let mapleader=","
+
+" Below is for folding
+" TODO {{{1
+" Python setup
+" fzf and coc-fzf
+" Take a look at this vim https://github.com/Optixal/neovim-init.vim/blob/master/init.vim
+" coc-explorer and anything else coc-X named
+" 1}}}
+
+" Folding {{{1
+    set foldmethod=marker
+    set timeoutlen=1000 ttimeoutlen=0
+    nnoremap <space> za
+    hi Folded ctermfg=1
+    set foldlevel=99
+    autocmd BufNewFile,BufRead *init.vim set foldlevel=0
+" 1}}}
+
+" General {{{1
+    syntax on
+    set number " Show line numbers
+    set showmatch " Highlights matching parentheses when highlighted
+    set wildmenu " Graphical representation for autocompletion
+    set hls " Highlighted search on
+    set modifiable " For flake8
+
+    " Make backspace behave in a sane manner.
+    set backspace=indent,eol,start
+
+    " Normal tabs
+    set shiftwidth=4
+
+    " Enable file type detection and do language-dependent indenting.
+    filetype plugin indent on
+    
+    " Open new splits to right and bottom
+    set splitbelow
+    set splitright
+
+    " Mouse
+    if has('mouse')
+	set mouse=a
+    endif
+    if !has('nvim')
+	set ttymouse=xterm2
+    end
+
+    " Remove esc delay
+    set ttimeout
+    set ttimeoutlen=100
+    set timeoutlen=3000
+    augroup FastEscape
+	autocmd!
+	au InsertEnter * set timeoutlen=0
+	au InsertLeave * set timeoutlen=1000
+    augroup END
+    
+    """ Python3 VirtualEnv
+    let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
+
+" 1}}}
+
+" Keybindings {{{1
+    " Make enter behave sensibly
+    nnoremap <CR> o<Esc>
+
+    " Double esc is save
+    map <Esc><Esc> :w<CR>
+    
+    " For opening initvim
+    nmap <leader>0s :source ~/.config/nvim/init.vim<CR>
+    nmap <leader>0o :edit ~/.config/nvim/init.vim<CR>
+
+    " Useful shortcuts
+    nmap ; :
+    imap jj <Esc>
+    nnoremap Q :q!<CR>
+    nnoremap <c-z> <nop>
+
+    " Indentation
+    nmap <Tab> >>_
+    nmap <S-Tab> <<_
+    vmap <Tab> >
+    vnoremap <S-Tab> <
+    
+    " Big jump
+    nmap J 5j
+    nmap K 5k
+    vmap J 5j
+    vmap K 5k
+
+    " Splits
+    nmap <leader>\ :vsp<CR>
+    nmap <leader>- :split<CR>
+
+    " split navigations (Ctrl-j down, Ctrl-k up, etc)
+    nnoremap <Down> <c-w><c-j>
+    nnoremap <Up> <c-w><c-k>
+    nnoremap <Right> <c-w><c-l>
+    nnoremap <Left> <c-w><c-h>
+
+    " Indentation
+    nnoremap <Tab> >>_
+    nnoremap <S-Tab> <<_
+    noremap <Tab> >gv
+    vnoremap <S-Tab> <gv
+
+" 1}}}
+
+" Plugins {{{1
+call plug#begin()
+    " todo
+    " Plug 'tpope/vim-unimpaired'
+    " nmap <leader>gs :Gstatus<CR>:resize 15<CR>
+    
+    " Github
+    Plug 'tpope/vim-fugitive'
+
+    " Jump around
+    Plug 'justinmk/vim-sneak'
+    let g:sneak#s_next = 1
+    let g:sneak#label = 1
+
+    " Nerdtree
+    Plug 'preservim/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ryanoasis/vim-devicons'
+    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+    "{{{2
+	nmap <leader>nn :NERDTree<CR>
+	nmap <leader>nt :NERDTreeToggle<CR>
+	nmap <leader>nf :NERDTreeFind<CR>
+	let g:NERDSpaceDelims = 1 " Nerd commenter settings
+	let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore annoying files in NERDTree
+	let NERDTreeShowHidden=1
+	let g:NERDTreeDirArrowExpandable = '↠'
+	let g:NERDTreeDirArrowCollapsible = '↡'
+
+	" Start NERDTree. If a file is specified, move the cursor to its window.
+	autocmd StdinReadPre * let s:std_in=1
+	autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+
+	" Exit Vim if NERDTree is the only window left.
+	autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+	    \ quit | endif
+
+	" Make it look nice
+	let NERDTreeMinimalUI = 1
+	let NERDTreeDirArrows = 1
+    " 2}}}
+
+    " Slime
+    Plug 'jpalardy/vim-slime'
+    " vim-slime settings {{{2
+	let g:slime_no_mappings = 1
+	xmap <leader>l <Plug>SlimeRegionSend
+	" nmap <leader>l V<Plug>SlimeRegionSend j
+	nmap <buffer> <leader>l <Plug>SlimeLineSendj
+	nmap <c-c>v <Plug>SlimeConfig
+	let g:slime_target = "neovim"
+	let g:slime_target = "tmux"
+	let g:slime_paste_file = "$HOME/.slime_paste"
+	let g:slime_default_config = {"socket_name": "default", "target_pane": ":.1"}	" Set defaults assuming 2 windows with the repl below
+    " 2}}}
+    
+    " Nerd commenter
+    Plug 'scrooloose/nerdcommenter'
+
+    " Status/tabline
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+
+    " Distraction free
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+    " {{{2 
+	nmap <leader>gg :Goyo<CR>
+	nmap <leader>gl :Limelight!!<CR>
+	xmap <leader>gl :Limelight!!<CR>
+    " 2}}}
+    
+    " Fuzzy finding
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
+    " Plugin for plain text notes
+    Plug 'junegunn/vim-journal'
+
+    " Nice json
+    Plug 'kevinoid/vim-jsonc'
+
+    " Surround
+    Plug 'tpope/vim-surround'
+
+    " Autoclose
+    Plug 'Townk/vim-autoclose'	
+    let g:AutoClosePumvisible={"ENTER":"", "ESC":""}
+
+    " Syntax highlighting
+    Plug 'sheerun/vim-polyglot'
+
+    " Powerline fonts
+    Plug 'powerline/powerline-fonts'
+    "
+    " Rainbow brackets
+    Plug 'frazrepo/vim-rainbow'
+    let g:rainbow_active = 1
+
+    " Multiple cursors
+    Plug 'terryma/vim-multiple-cursors'
+    " Multiple cursor options {{{2
+	" Multiple cursors
+	" Note that the default <A-n> and g<A-n> shortcuts don't work on Mac due to dead keys.
+	" <A-n> is used to enter accented text e.g. ñ
+	nmap <S-C-n> <Plug>AllWholeOccurrences
+	xmap <S-C-n> <Plug>AllWholeOccurrences
+	nmap g<S-C-n> <Plug>AllOccurrences
+	xmap g<S-C-n> <Plug>AllOccurrences
+	" Remap multiple-cursors shortcuts to match terryma/vim-multiple-cursors
+	" We make C-s skip since C-x is currently bound to alfreds clipboard
+	nmap <C-n> <Plug>NextWholeOccurrence
+	xmap <C-n> <Plug>NextWholeOccurrence
+	nmap g<C-n> <Plug>NextOccurrence
+	xmap g<C-n> <Plug>NextOccurrence
+	nmap <C-s> <Plug>SkipOccurrence
+	xmap <C-s> <Plug>SkipOccurrence
+	nmap <C-p> <Plug>RemoveOccurrence
+	xmap <C-p> <Plug>RemoveOccurrence
+    " 2}}}
+    
+    " Python
+    " Indent
+    Plug 'Vimjas/vim-python-pep8-indent'
+    " Black
+    Plug 'psf/black', { 'branch': 'stable' }
+    nmap <leader>rb :Black<CR>
+    autocmd BufWritePre *.py execute ':Black'	" Run black on save
+
+    " Dash documentation
+    Plug 'rizzatti/dash.vim'
+    nmap <leader>fd :Dash
+
+    " Xcode
+    Plug 'arzg/vim-colors-xcode'
+
+    " Coc 
+    if !exists('g:vscode')
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    " Plug 'antoinemadec/coc-fzf'
+    " {{{2
+        " Give more space for displaying messages.
+        set cmdheight=2
+
+        " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+        " delays and poor user experience.
+        set updatetime=300
+
+        " Don't pass messages to |ins-completion-menu|.
+        set shortmess+=c
+
+        " Pycharm emulation
+        nmap <leader>rn <Plug>(coc-rename)
+        nmap <leader>x <Plug>(coc-diagnostic-prev)
+        nmap <leader>X <Plug>(coc-diagnostic-next)
+        nmap <silent> gd <Plug>(coc-definition)
+        nmap <silent> gy <Plug>(coc-type-definition)
+        nmap <silent> gi <Plug>(coc-implementation)
+        nmap <silent> gr <Plug>(coc-references)
+
+        " Formatting selected code.
+        xmap <leader>rf  <Plug>(coc-format-selected)
+        nmap <leader>rf  <Plug>(coc-format-selected)
+
+        " Show signature help on placeholder jump
+        autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+
+        " Docs
+        nmap <leader>f :call <SID>show_documentation()<CR>
+        function! s:show_documentation()
+          if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+          elseif (coc#rpc#ready())
+            call CocActionAsync('doHover')
+          else
+            execute '!' . &keywordprg . " " . expand('<cword>')
+          endif
+        endfunction
+
+        " Use tab for trigger completion with characters ahead and navigate.
+        inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+        inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+        " <CR> selects first option
+        inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
+                  \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+    " 2}}}
+    else
+    end
+
+    " " Julia language support
+    Plug 'JuliaEditorSupport/julia-vim'
+
+    " Kite
+    " let g:kite_supported_languages = ['python', 'javascript']
+    " let g:kite_tab_complete=1
+
+call plug#end()
+" 1}}}
+
+" Colorscheme {{{1
+set termguicolors
+set background=dark
+colorscheme xcodedark
+let g:airline_theme='xcodedark'
+
+function! ColorXcodeDark()
+    set background=dark
+    colorscheme xcodedark
+    let g:airline_theme='xcodedark'
+endfunction
+
+function! ColorXcodeLight()
+    set background=light
+    colorscheme xcodelight
+    let g:airline_theme='xcodelight'
+endfunction
+
+nmap <leader>e1 :call ColorXcodeDark()<CR>
+nmap <leader>e2 :call ColorXcodeLight()<CR>
+" 1}}}
+
+""" VSCode {{{1
+if exists('g:vscode')
+    " Some movements
+    nmap J 5j   " This doesnt map over properly from above, unsure why
+
+    " Julia
+    nmap <leader><Space> :call VSCodeNotify(language-julia.executeCodeBlockOrSelection)<CR>
+
+    " VSCode actions, made to mimic the ones setup in pycharm
+    nmap <leader>dd :call VSCodeNotify('workbench.action.debug.run')<CR>
+    nmap <leader>ds :call VSCodeNotify('workbench.action.debug.stepInto')<CR>
+    nmap <leader>b :call VSCodeNotify('editor.debug.action.toggleBreakpoint')<CR>
+    nmap <leader>l :call VSCodeNotify('language-julia.executeJuliaCodeInREPL')<CR>
+    xmap <leader>l :call VSCodeNotify('language-julia.executeJuliaCodeInREPL')<CR>
+    nmap <leader>rb :call VSCodeNotify('editor.action.formatDocument')<CR>
+
+    nmap <leader>\ :call VSCodeNotify('workbench.action.splitEditor')<CR>
+    nmap <leader>- :call VSCodeNotify('workbench.action.splitEditorOrthogonal')<CR>
+    nmap <leader>q :call VSCodeNotify('workbench.action.closeActiveEditor')<CR>
+    nmap ]] :call VSCodeNotify("workbench.action.nextEditor")<CR>
+    nmap [[ :call VSCodeNotify("workbench.action.previousEditor")<CR>
+    nmap <Up> :call VSCodeNotify("workbench.action.moveActiveEditorGroupUp")<CR>
+    nmap <Down> :call VSCodeNotify("workbench.action.moveActiveEditorGroupDown")<CR>
+    nmap <Left> :call VSCodeNotify("workbench.action.moveActiveEditorGroupLeft")<CR>
+    nmap <Right> :call VSCodeNotify("workbench.action.moveActiveEditorGroupRight")<CR>
+    nmap q :call VSCodeNotify("workbench.action.closeActiveEditor")<CR>
+    nmap Q :call VSCodeNotify("workbench.action.reopenClosedEditor")<CR>
+
+    nmap <leader>f :call VSCodeNotify("language-julia.show-documentation")<CR>
+
+    nmap ; :call VSCodeNotify('workbench.action.showCommands')<CR>
+    nmap <leader>v :call VSCodeNotify('workbench.action.quickOpen')<CR>
+    nmap <leader>s :call VSCodeNotify('workbench.action.goToSymbol')<CR>
+    nmap <leader>m :call VSCodeNotify('editor.action.revealDefinition')<CR>
+else
+    " nothing 
+end
+""" 1}}}
