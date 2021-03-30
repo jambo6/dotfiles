@@ -52,6 +52,7 @@ alias zshrc="vim ~/git/dotfiles/.zshrc"
 alias srczsh="source ~/.zshrc"
 alias vimrc="vim ~/git/dotfiles/.vimrc"
 alias initvim="vim ~/.config/nvim/init.vim"
+alias dotfiles="cd ~/git/dotfiles"
 alias psqlrc="vim ~/.psqlrc"
 alias mongorc="vim ~/.mongorc.js"
 alias mongoconf="vim /usr/local/etc/mongod.conf"
@@ -86,6 +87,12 @@ makelatex() {
 	python ~/.bash_scripts/compile_latex.py $1
 }
 
+# For fzf
+if type rg &> /dev/null; then
+  export FZF_DEFAULT_COMMAND='rg --files'
+  export FZF_DEFAULT_OPTS='-m --height 50% --border'
+fi
+
 # Git
 # ----------------------
 # Git Aliases
@@ -104,7 +111,8 @@ alias gcm='git commit --message'
 alias gcmnv='git commit --no-verify --message'
 alias gcf='git commit --fixup'
 alias gco='git checkout'
-alias gcob='git checkout -b'
+# alias gcob='git checkout -b'
+alias gcob='git branch | fzf | xargs git checkout'
 alias gcom='git checkout master'
 alias gcos='git checkout staging'
 alias gcod='git checkout develop'
