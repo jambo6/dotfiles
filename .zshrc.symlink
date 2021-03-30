@@ -4,8 +4,6 @@ export TERM="xterm-256color"
 export PGUSER="postgres"
 export PATH=$PATH:/Users/jambo/.npm-global/bin
 export PATH=$PATH:/Applications/Julia-1.5.app/Contents/Resources/julia/bin
-export CC=gcc
-export CXX=g++
 
 # Not sure what this is :S
 autoload -U edit-command-line
@@ -27,7 +25,7 @@ DEFAULT_USER=username
 alias vim="nvim"
 
 # TMUX ----------------
-alias srct="tmux source-file ~/.tmux.conf"
+alias srctmux="tmux source-file ~/.tmux.conf"
 alias tconf="vim ~/.tmux.conf"
 alias tls="echo ; tmux ls; echo;"
 tnew() { tmux new -s $1 ; }
@@ -48,9 +46,8 @@ tjulia() {
 alias julia="/Applications/Julia-1.5.app/Contents/Resources/julia/bin/julia"
 alias myip=ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' 
 # rc files
-alias zshrc="vim ~/git/dotfiles/.zshrc"
+alias zshrc="vim ~/.zshrc"
 alias srczsh="source ~/.zshrc"
-alias vimrc="vim ~/git/dotfiles/.vimrc"
 alias initvim="vim ~/.config/nvim/init.vim"
 alias dotfiles="cd ~/git/dotfiles"
 alias psqlrc="vim ~/.psqlrc"
