@@ -1,0 +1,25 @@
+source ./.simple_zsh
+
+# Start in documents
+cd ~/Documents
+alias scratch='/scratch/morrill'
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/morrill/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/morrill/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/morrill/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/morrill/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+
+export NVM_DIR="/home/morrill/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source /home/morrill/Documents/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
