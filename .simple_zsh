@@ -6,8 +6,11 @@ export TERM="xterm-256color"
 ZSH_THEME="refined"
 plugins=(
 	vi-mode
-	history-substring-search
 	z
+	history-substring-search
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-completions
 )
 source $ZSH/oh-my-zsh.sh
 # Changes prompt

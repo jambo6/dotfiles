@@ -68,34 +68,6 @@ call plug#begin()
     let g:sneak#s_next = 1
     let g:sneak#label = 1
 
-    " Nerdtree
-    Plug 'preservim/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'ryanoasis/vim-devicons'
-    Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-    " NerdTree settings {{{
-        nmap <leader>nn :NERDTree<CR>
-        nmap <leader>nt :NERDTreeToggle<CR>
-        nmap <leader>nf :NERDTreeFind<CR>
-        let g:NERDSpaceDelims = 1 " Nerd commenter settings
-        let NERDTreeIgnore=['\.pyc$', '\~$'] " ignore annoying files in NERDTree
-        let NERDTreeShowHidden=1
-        let g:NERDTreeDirArrowExpandable = '↠'
-        let g:NERDTreeDirArrowCollapsible = '↡'
-
-        " Start NERDTree. If a file is specified, move the cursor to its window.
-        autocmd StdinReadPre * let s:std_in=1
-        autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-
-        " Exit Vim if NERDTree is the only window left.
-        autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
-          \ quit | endif
-
-        " Make it look nice
-        let NERDTreeMinimalUI = 1
-        let NERDTreeDirArrows = 1
-    " }}}
-
     " Slime
     Plug 'jpalardy/vim-slime'
     " Slime settings {{{2
@@ -179,18 +151,13 @@ call plug#begin()
         " Syntax
         Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
         
-        " Black
+        " " Black
         Plug 'psf/black', { 'branch': 'stable' }
         nmap <leader>rb :Black<CR>
-        autocmd BufWritePre *.py execute ':Black'	" Run black on save
+        autocmd BufWritePost *.py execute ':Black'
 
         " Jupyter
         Plug 'jupyter-vim/jupyter-vim'
-        
-        " Lint
-        Plug 'dense-analysis/ale'
-        let g:ale_fixers = {'python': ['yapf']}
-
     " }}}
 
     " Dash documentation, invoke with :Dash
@@ -201,9 +168,16 @@ call plug#begin()
 
     " Coc 
     if !exists('g:vscode')
-    Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    " Plug 'antoinemadec/coc-fzf'
-    " {{{
+    " coc things {{{
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        Plug 'ryanoasis/vim-devicons'
+        " Plug 'antoinemadec/coc-fzf'
+        
+        nmap <silent> coc :CocConfig<CR>
+
+        " CocExplorer
+        nmap <leader>n :CocCommand explorer<CR>
+
         " Give more space for displaying messages.
         set cmdheight=2
 
@@ -342,6 +316,12 @@ nmap <Tab> >>_
 nmap <S-Tab> <<_
 vmap <Tab> >
 vnoremap <S-Tab> <
+
+" Clipboard
+vnoremap <leader>y "+y
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+vnoremap <leader>p "+p
 
 " Big jump
 nmap J 5j

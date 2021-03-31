@@ -5,17 +5,15 @@ export PGUSER="postgres"
 export PATH=$PATH:/Users/jambo/.npm-global/bin
 export PATH=$PATH:/Applications/Julia-1.5.app/Contents/Resources/julia/bin
 
-# Not sure what this is :S
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
-
 # OH MY ZSH ---------
 ZSH_THEME="refined"
 plugins=(
 	vi-mode
-	history-substring-search
 	z
+	history-substring-search
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-completions
 )
 source $ZSH/oh-my-zsh.sh
 # Changes prompt
