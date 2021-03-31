@@ -5,21 +5,47 @@ export PGUSER="postgres"
 export PATH=$PATH:/Users/jambo/.npm-global/bin
 export PATH=$PATH:/Applications/Julia-1.5.app/Contents/Resources/julia/bin
 
-alias myip=ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}'
+# Plugins
+source ~/.zplug/init.zsh
 
-# OH MY ZSH ---------
-ZSH_THEME="refined"
-plugins=(
-	vi-mode
-	z
-	history-substring-search
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-completions
-)
-source $ZSH/oh-my-zsh.sh
-# Changes prompt
-DEFAULT_USER=username
+zplug "jeffreytse/zsh-vi-mode"
+zplug "agkozak/zsh-z"
+zplug "zsh-users/zsh-history-substring-search"
+
+zplug "zsh-users/zsh-autosuggestions", defer:2
+zplug "zsh-users/zsh-completions", defer:2
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+zplug mafredri/zsh-async, from:github
+
+function prompt_name_setup {
+  PROMPT='%m%#hh '
+  RPROMPT=''
+}
+
+zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+# Then, source plugins and add commands to $PATH
+zplug load --verbose
+
+# # plugins=(
+# # 	vi-mode
+# # 	z
+# # 	history-substring-search
+# #   zsh-autosuggestions
+# #   zsh-syntax-highlighting
+# #   zsh-completions
+# # )
+# # source $ZSH/oh-my-zsh.sh
+# # Changes prompt
+# DEFAULT_USER=username
 
 # Neovim --------------
 alias vim="nvim"

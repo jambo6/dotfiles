@@ -46,7 +46,7 @@ au InsertLeave * set timeoutlen=1000
 augroup END
 
 """ Python3 VirtualEnv
-let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
+let g:python3_host_prog = expand('~./env/bin/python')
 " }}}
 
 " Plugins {{{1
