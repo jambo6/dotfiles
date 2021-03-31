@@ -317,11 +317,15 @@ nmap <S-Tab> <<_
 vmap <Tab> >
 vnoremap <S-Tab> <
 
-" Clipboard
+" System clipboard
 vnoremap <leader>y "+y
+vnoremap <leader>Y "+yg_
 nnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
 nnoremap <leader>p "+p
+nnoremap <leader>P "+pg_
 vnoremap <leader>p "+p
+vnoremap <leader>P "+pg_
 
 " Big jump
 nmap J 5j
