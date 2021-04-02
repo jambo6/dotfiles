@@ -46,7 +46,7 @@ au InsertLeave * set timeoutlen=1000
 augroup END
 
 """ Python3 VirtualEnv
-let g:python3_host_prog = expand('~./env/bin/python')
+let g:python3_host_prog = expand('/Users/jambo/opt/miniconda3/bin/python')
 " }}}
 
 " Plugins {{{1
@@ -57,7 +57,7 @@ call plug#begin()
     
     " Github
     Plug 'tpope/vim-fugitive'
-    "
+    
     " Comments
     Plug 'tpope/vim-commentary'
     vmap <leader>c gcc
@@ -230,6 +230,7 @@ call plug#begin()
 
     " Julia language support
     Plug 'JuliaEditorSupport/julia-vim'
+    let g:latex_to_unicode_auto = 1
 
 call plug#end()
 " 1}}}
@@ -310,6 +311,7 @@ nmap <leader>0o :edit ~/.config/nvim/init.vim<CR>
 nmap ; :
 imap jj <Esc>
 nmap q :q<CR>
+nmap fq :q!<CR>
 
 " Indentation
 nmap <Tab> >>_
