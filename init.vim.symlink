@@ -65,15 +65,24 @@ call plug#begin()
 
     " Jump around
     Plug 'justinmk/vim-sneak'
-    let g:sneak#s_next = 1
-    let g:sneak#label = 1
+    " Sneak {{{2
+        " Immediately move to next
+        let g:sneak#s_next = 1
+        " Emulate easymotion
+        let g:sneak#label = 1
+        " Case insensitive
+        let g:sneak#use_ic_scs = 1
+        " Change the colors
+        highlight Sneak guifg=black guibg=#00C7DF ctermfg=black ctermbg=cyan
+        highlight SneakScope guifg=red guibg=yellow ctermfg=red ctermbg=yellow
+    " 2}}}
 
     " Slime
     Plug 'jpalardy/vim-slime'
     " Slime settings {{{2
         let g:slime_no_mappings = 1
         xmap <leader>l <Plug>SlimeRegionSend
-        nmap <buffer> <leader>l <Plug>SlimeLineSendj
+        nmap <leader>l <Plug>SlimeLineSendj
         nmap <C-c>v <Plug>SlimeConfig
         let g:slime_target = "tmux"
         let g:slime_paste_file = "$HOME/.slime_paste"
@@ -93,9 +102,10 @@ call plug#begin()
         xmap <leader>gl :Limelight!!<CR>
     " }}}
     
+    Plug 'junegunn/fzf.vim'
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'airblade/vim-rooter'
     " fzf {{{
-        Plug 'junegunn/fzf.vim'
-        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
         nmap <silent> <leader>v :GFiles<CR>
         nmap <silent> <leader>V :Files<CR>
         nmap <leader>b :Buffer<CR>
@@ -160,8 +170,8 @@ call plug#begin()
         Plug 'jupyter-vim/jupyter-vim'
     " }}}
 
-    " Dash documentation, invoke with :Dash
-    Plug 'rizzatti/dash.vim'
+    " Show diffs
+    Plug 'mhinz/vim-signify'
 
     " Xcode
     Plug 'arzg/vim-colors-xcode'
@@ -171,12 +181,24 @@ call plug#begin()
     " coc things {{{
         Plug 'neoclide/coc.nvim', {'branch': 'release'}
         Plug 'ryanoasis/vim-devicons'
-        " Plug 'antoinemadec/coc-fzf'
-        
+        Plug 'antoinemadec/coc-fzf'     " Requires junegunn/fzf
         nmap <silent> coc :CocConfig<CR>
 
-        " CocExplorer
-        nmap <leader>n :CocCommand explorer<CR>
+        " coc fzf 
+        nnoremap <silent> <space><space> :<C-u>CocFzfList<CR>
+        nnoremap <silent> <space>a       :<C-u>CocFzfList diagnostics<CR>
+        nnoremap <silent> <space>b       :<C-u>CocFzfList diagnostics --current-buf<CR>
+        nnoremap <silent> <space>c       :<C-u>CocFzfList commands<CR>
+        nnoremap <silent> <space>e       :<C-u>CocFzfList extensions<CR>
+        nnoremap <silent> <space>l       :<C-u>CocFzfList location<CR>
+        nnoremap <silent> <space>o       :<C-u>CocFzfList outline<CR>
+        nnoremap <silent> <space>s       :<C-u>CocFzfList symbols<CR>
+        nnoremap <silent> <space>p       :<C-u>CocFzfListResume<CR>
+
+        " CocExplorer, close if last open, autoopen
+        nmap <leader>e :CocCommand explorer<CR>
+        autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+        autocmd BufEnter * :CocCommand explorer<CR>
 
         " Give more space for displaying messages.
         set cmdheight=2
@@ -192,6 +214,7 @@ call plug#begin()
         nmap <leader>rn <Plug>(coc-rename)
         nmap <leader>x <Plug>(coc-diagnostic-prev)
         nmap <leader>X <Plug>(coc-diagnostic-next)
+        nmap <silent> <leader>m :call CocAction('jumpDefinition', 'tab drop')<CR>
         nmap <silent> gd <Plug>(coc-definition)
         nmap <silent> gy <Plug>(coc-type-definition)
         nmap <silent> gi <Plug>(coc-implementation)
@@ -253,8 +276,8 @@ function! ColorXcodeLight()
     let g:airline_theme='xcodelight'
 endfunction
 
-nmap <leader>e1 :call ColorXcodeDark()<CR>
-nmap <leader>e2 :call ColorXcodeLight()<CR>
+" nmap <leader>e1 :call ColorXcodeDark()<CR>
+" nmap <leader>e2 :call ColorXcodeLight()<CR>
 " }}}
 
 " VSCode {{{
@@ -312,6 +335,7 @@ nmap ; :
 imap jj <Esc>
 nmap q :q<CR>
 nmap fq :q!<CR>
+nmap zz :wq!<CR>
 
 " Indentation
 nmap <Tab> >>_
@@ -361,7 +385,6 @@ vnoremap <S-Tab> <gv
 " folding
 set foldmethod=marker
 set timeoutlen=1000 ttimeoutlen=0
-nnoremap <space> za
 hi Folded ctermfg=1
 set foldlevel=99
 autocmd BufNewFile,BufRead *init.vim set foldlevel=0
