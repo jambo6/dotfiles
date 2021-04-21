@@ -13,12 +13,16 @@ set showmatch " Highlights matching parentheses when highlighted
 set wildmenu " Graphical representation for autocompletion
 set hls " Highlighted search on
 set modifiable " For flake8
+set colorcolumn=120
 
 " Make backspace behave in a sane manner.
 set backspace=indent,eol,start
 
 " Normal tabs
+set tabstop=4                             " Sets tabstops to a width of four columns.
+set softtabstop=4                         " Determines the behaviour of TAB and BACKSPACE keys with expandtab.
 set shiftwidth=4
+setlocal expandtab
 
 " Enable file type detection and do language-dependent indenting.
 filetype plugin indent on
@@ -92,6 +96,8 @@ call plug#begin()
     " Status/tabline
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#fnamemod = ':t'
 
     " Distraction free
     Plug 'junegunn/goyo.vim'
@@ -176,6 +182,29 @@ call plug#begin()
     " Xcode
     Plug 'arzg/vim-colors-xcode'
 
+    " Go
+    Plug 'fatih/vim-go'
+    " Go options 2{{{
+        let g:go_def_mapping_enabled = 0
+        let g:go_doc_keywordprg_enabled = 0
+        let g:go_fmt_command = "goimports"    " Run goimports along gofmt on each save     
+        let g:go_auto_type_info = 1           " Automatically get signature/type info for object under cursor     
+        autocmd FileType go nmap <leader><space>  <Plug>(go-run)
+        autocmd FileType go nmap <leader>rf <Plug>(go-mod-fmt)
+        autocmd FileType go nmap <leader>F <Plug>(go-doc-browser)
+        " run :GoBuild or :GoTestCompile based on the go file
+        function! s:build_go_files()
+            let l:file = expand('%')
+            if l:file =~# '^\f\+_test\.go$'
+                call go#test#Test(0, 1)
+            elseif l:file =~# '^\f\+\.go$'
+                call go#cmd#Build(0)
+            endif
+        endfunction
+        autocmd FileType go nmap <leader>b :<C-u>call <SID>build_go_files()<CR>
+
+    " 2}}}
+
     " Coc 
     if !exists('g:vscode')
     " coc things {{{
@@ -198,7 +227,6 @@ call plug#begin()
         " CocExplorer, close if last open, autoopen
         nmap <leader>e :CocCommand explorer<CR>
         autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
-        autocmd BufEnter * :CocCommand explorer<CR>
 
         " Give more space for displaying messages.
         set cmdheight=2
@@ -280,6 +308,82 @@ endfunction
 " nmap <leader>e2 :call ColorXcodeLight()<CR>
 " }}}
 
+" Keybindings {{{
+" Make enter behave sensibly
+nnoremap <CR> o<Esc>
+
+" Double esc is save
+map <Esc><Esc> :w<CR>
+
+" For opening initvim
+nmap <leader>0s :source ~/.config/nvim/init.vim<CR>
+nmap <leader>0o :edit ~/.config/nvim/init.vim<CR>
+
+" Useful shortcuts
+nmap ; :
+imap jj <Esc>
+nmap q :q<CR>
+nmap fq :q!<CR>
+nmap zz :wq!<CR>
+
+" Indentation
+nmap <Tab> >>_
+nmap <S-Tab> <<_
+vmap <Tab> >
+vnoremap <S-Tab> <
+
+" System clipboard
+vnoremap <leader>y "+y
+vnoremap <leader>Y "+yg_
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>p "+p
+nnoremap <leader>P "+pg_
+vnoremap <leader>p "+p
+vnoremap <leader>P "+pg_
+
+" Big jump
+nnoremap J 5j
+nnoremap K 5k
+vmap J 5j
+vmap K 5k
+
+" " Tabs
+nmap H gT
+nmap L gt
+
+" Splits
+nmap <leader>\ :vsp<CR>
+nmap <leader>- :split<CR>
+
+" Split navigations (Ctrl-j down, Ctrl-k up, etc)
+nnoremap <Down> <c-w><c-j>
+nnoremap <Up> <c-w><c-k>
+nnoremap <Right> <c-w><c-l>
+nnoremap <Left> <c-w><c-h>
+
+" Indentation
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+noremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+" Length guide
+au FileType julia setlocal colorcolumn=120
+au FileType python setlocal colorcolumn=120
+
+" }}}
+
+" Folding {{{
+" This goes at the end otherwise something is overriding marker -> indent
+" folding
+set foldmethod=marker
+set timeoutlen=1000 ttimeoutlen=0
+hi Folded ctermfg=1
+set foldlevel=99
+autocmd BufNewFile,BufRead *init.vim set foldlevel=0
+" }}}
+
 " VSCode {{{
 if exists('g:vscode')
     " Some movements
@@ -318,75 +422,3 @@ else
     " nothing 
 end
 " }}}
-
-" Keybindings {{{
-" Make enter behave sensibly
-nnoremap <CR> o<Esc>
-
-" Double esc is save
-map <Esc><Esc> :w<CR>
-
-" For opening initvim
-nmap <leader>0s :source ~/.config/nvim/init.vim<CR>
-nmap <leader>0o :edit ~/.config/nvim/init.vim<CR>
-
-" Useful shortcuts
-nmap ; :
-imap jj <Esc>
-nmap q :q<CR>
-nmap fq :q!<CR>
-nmap zz :wq!<CR>
-
-" Indentation
-nmap <Tab> >>_
-nmap <S-Tab> <<_
-vmap <Tab> >
-vnoremap <S-Tab> <
-
-" System clipboard
-vnoremap <leader>y "+y
-vnoremap <leader>Y "+yg_
-nnoremap <leader>y "+y
-nnoremap <leader>Y "+yg_
-nnoremap <leader>p "+p
-nnoremap <leader>P "+pg_
-vnoremap <leader>p "+p
-vnoremap <leader>P "+pg_
-
-" Big jump
-nmap J 5j
-nmap K 5k
-vmap J 5j
-vmap K 5k
-
-" " Tabs
-nmap H gT
-nmap L gt
-
-" Splits
-nmap <leader>\ :vsp<CR>
-nmap <leader>- :split<CR>
-
-" Split navigations (Ctrl-j down, Ctrl-k up, etc)
-nnoremap <Down> <c-w><c-j>
-nnoremap <Up> <c-w><c-k>
-nnoremap <Right> <c-w><c-l>
-nnoremap <Left> <c-w><c-h>
-
-" Indentation
-nnoremap <Tab> >>_
-nnoremap <S-Tab> <<_
-noremap <Tab> >gv
-vnoremap <S-Tab> <gv
-" }}}
-
-" Folding {{{
-" This goes at the end otherwise something is overriding marker -> indent
-" folding
-set foldmethod=marker
-set timeoutlen=1000 ttimeoutlen=0
-hi Folded ctermfg=1
-set foldlevel=99
-autocmd BufNewFile,BufRead *init.vim set foldlevel=0
-" }}}
-

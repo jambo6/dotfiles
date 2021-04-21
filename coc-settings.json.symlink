@@ -1,0 +1,81 @@
+{
+	"suggest.maxCompleteItemCount": 10,
+	"coc.preferences.jumpCommand": "split",
+
+	// Python
+	"python.jediEnabled": false,
+
+	// Coc explorer
+	"explorer.width": 30,
+	"explorer.file.showHiddenFiles": false,
+	"explorer.file.autoReveal": false,
+	"explorer.previewAction.onHover": false,
+	"explorer.icon.enableVimDevicons": true,
+	"explorer.icon.enableNerdfont": true,
+	"explorer.icon.expanded": "▼",
+	"explorer.icon.collapsed": "▶",
+	"explorer.file.child.template": "[git | 2] [selection | clip | 1] [indent][icon | 1] [diagnosticError & 1][filename omitCenter 1][modified][readonly] [linkIcon & 1][link growRight 1 omitCenter 5]",
+	"explorer.buffer.root.template": "[icon & 1] OPEN EDITORS",
+	"explorer.file.root.template": "[icon & 1] PROJECT ([root])",
+
+	"explorer.keyMappings.global": {
+		"i": false, // cancel default mapkey
+
+		"*": "toggleSelection",
+		"<tab>": "actionMenu",
+
+		"e": ["wait", "expanded?", "collapse", "expand"],
+		"<cr>": ["wait", "expandable?", "cd", "open"],
+		"o": "open",
+		"s": "open:split",
+		"v": "open:vsplit",
+		"t": "open:tab",
+
+		"yp": "copyFilepath",
+		"yn": "copyFilename",
+		"yy": "copyFile",
+		"dd": "cutFile",
+		"p": "pasteFile",
+		"df": "delete",
+		"dF": "deleteForever",
+
+		"a": "addFile",
+		"A": "addDirectory",
+		"r": "rename",
+
+		"zh": "toggleHidden",
+		"g<dot>": "toggleHidden",
+		"R": "refresh",
+
+		"?": "help",
+		"q": "quit",
+		"<esc>": "esc",
+		"X": "systemExecute",
+		"gd": "listDrive",
+
+		"f": "search",
+		"F": "searchRecursive",
+
+		"gf": "gotoSource:file",
+		"gb": "gotoSource:buffer",
+
+		"[[": ["wait", "sourcePrev"],
+		"]]": ["wait", "sourceNext"],
+
+		"[i": ["wait", "indentPrev"],
+		"]i": ["wait", "indentNext"],
+
+		"[m": ["wait", "markPrev:modified"],
+		"]m": ["wait", "markNext:modified"],
+
+		"[d": ["wait", "markPrev:diagnosticError:diagnosticWarning"],
+		"]d": ["wait", "markNext:diagnosticError:diagnosticWarning"],
+		"[D": ["wait", "markPrev:diagnosticError"],
+		"]D": ["wait", "markNext:diagnosticError"],
+
+		"[c": ["wait", "markPrev:git"],
+		"]c": ["wait", "markNext:git"],
+		"<<": "gitStage",
+		">>": "gitUnstage"
+  }
+}
