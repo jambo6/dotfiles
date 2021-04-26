@@ -5,6 +5,7 @@ export PGUSER="postgres"
 export PATH=$PATH:/Library/PostgreSQL/13/bin
 export PATH=$PATH:/Users/jambo/.npm-global/bin
 export PATH=$PATH:/Applications/Julia-1.6.app/Contents/Resources/julia/bin
+export GOPRIVATE="github.com/jambo6"
 # For clang
 export CC=gcc-8
 export CXX=g++-8
@@ -37,7 +38,10 @@ fi
 zplug load
 
 # Neovim --------------
+alias psql="pgcli"
+alias lz="lazygit"
 alias vim="nvim"
+alias julia="/Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia"
 
 # TMUX ----------------
 alias srctmux="tmux source-file ~/.tmux.conf"
@@ -58,8 +62,7 @@ tjulia() {
 
 
 # ALIASES --------------------
-alias julia="/Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia"
-alias myip=ifconfig | grep "inet " | grep -Fv 127.0.0.1 | awk '{print $2}' 
+alias myip="ifconfig | grep \"inet \" | grep -Fv 127.0.0.1 | awk '{print $2}'"
 
 alias -- -="cd -"
 alias ..="cd ../"
@@ -99,6 +102,7 @@ alias glp=glol
 alias gs="git status -sb"
 alias gm="git merge --squash"
 alias gbv="gb -v"
+alias gpt="gp --tags"
 
 # Functions --------------------
 # After mkdir, cd into it

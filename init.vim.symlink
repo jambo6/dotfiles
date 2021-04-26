@@ -61,6 +61,11 @@ call plug#begin()
     
     " Github
     Plug 'tpope/vim-fugitive'
+    """ mappings {{{2
+        nnoremap <leader>gd :Gvdiff!<CR>
+        nnoremap gdh :diffget //2<CR>
+        nnoremap gdl :diffget //3<CR>
+    """ 2}}}
     
     " Comments
     Plug 'tpope/vim-commentary'
@@ -135,7 +140,7 @@ call plug#begin()
 
     " Powerline fonts
     Plug 'powerline/powerline-fonts'
-    "
+
     " Rainbow brackets
     Plug 'frazrepo/vim-rainbow'
     let g:rainbow_active = 1
