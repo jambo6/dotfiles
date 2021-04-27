@@ -50,7 +50,7 @@ au InsertLeave * set timeoutlen=1000
 augroup END
 
 """ Python3 VirtualEnv
-let g:python3_host_prog = expand('/Users/jambo/opt/miniconda3/bin/python')
+let g:python3_host_prog = expand('~/.config/nvim/env/bin/python')
 " }}}
 
 " Plugins {{{1
@@ -385,8 +385,9 @@ au FileType python setlocal colorcolumn=120
 set foldmethod=marker
 set timeoutlen=1000 ttimeoutlen=0
 hi Folded ctermfg=1
-set foldlevel=99
-autocmd BufNewFile,BufRead *init.vim set foldlevel=0
+" set foldlevel=99
+set foldlevel=0
+" autocmd BufNewFile,BufRead *init.vim set foldlevel=0
 " }}}
 
 " VSCode {{{
