@@ -2,8 +2,9 @@ source ~/dotfiles/.simple_zsh
 
 # Start in documents
 cd ~/Documents
-alias scratch='/scratch/morrill'
+alias scratch='cd /scratch/morrill'
 alias vim='/home/morrill/nvim'
+alias szsh='vim ~/dotfiles/.simple_zsh'
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
