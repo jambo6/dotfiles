@@ -1,0 +1,99 @@
+let mapleader=","
+
+" Extensions
+set easymotion
+set NERDTree
+set surround
+set multiple-cursors
+set commentary
+set highlightedyank
+set sneak
+
+" Extension options
+nmap <leader>e :NERDTree<CR>
+nmap <leader>c gcc
+vmap <leader>c gc
+
+" Keybindings {{{
+" Make enter behave sensibly
+nnoremap <CR> o<Esc>
+
+" Double esc is save
+map <Esc><Esc> :w<CR>
+
+" For opening initvim
+nmap <leader>0s :source ~/.ideavimrc<CR>
+nmap <leader>0o :edit ~/.ideavimrc<CR>
+
+" Useful shortcuts
+nmap ; :
+imap jj <Esc>
+nmap q :q<CR>
+nmap fq :q!<CR>
+nmap zz :wq!<CR>
+
+" Indentation
+nmap <Tab> >>_
+nmap <S-Tab> <<_
+vmap <Tab> >
+vnoremap <S-Tab> <
+
+" System clipboard
+vnoremap <leader>y "+y
+vnoremap <leader>Y "+yg_
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>p "+p
+nnoremap <leader>P "+pg_
+vnoremap <leader>p "+p
+vnoremap <leader>P "+pg_
+
+" Big jump
+nnoremap J 5j
+nnoremap K 5k
+vmap J 5j
+vmap K 5k
+
+" " Tabs
+nmap H gT
+nmap L gt
+
+" Splits
+nmap <leader>\ :vsp<CR>
+nmap <leader>- :split<CR>
+
+" Split navigations (Ctrl-j down, Ctrl-k up, etc)
+nnoremap <Down> <c-w><c-j>
+nnoremap <Up> <c-w><c-k>
+nnoremap <Right> <c-w><c-l>
+nnoremap <Left> <c-w><c-h>
+
+" Indentation
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+noremap <Tab> >gv
+vnoremap <S-Tab> <gv
+" }}}
+
+
+" Jetbrains commands {{{1
+nmap <leader><space> :action ChooseRunConfiguration<CR>
+nmap <leader>d :action ChooseDebugConfiguration<CR>
+nmap <leader>b :action ToggleLineBreakpoint<CR>
+nmap <leader>f :action QuickJavaDoc<CR>
+nmap <leader>m :action GotoDeclaration<CR>
+nmap <leader>v :action GotoFile<CR>
+nmap <leader>o :action RecentLocations<CR>
+nmap <leader>s :action GotoSymbol<CR>
+nmap <leader>l :action ExecuteInPyConsoleAction<CR>
+vmap <leader>l :action ExecuteInPyConsoleAction<CR>
+" 1}}}
+
+" Folding {{{1
+" This goes at the end otherwise something is overriding marker -> indent
+" folding
+set foldmethod=marker
+set timeoutlen=1000 ttimeoutlen=0
+hi Folded ctermfg=1
+set foldlevel=0
+" 1}}}
