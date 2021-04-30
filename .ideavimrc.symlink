@@ -13,6 +13,21 @@ set sneak
 nmap <leader>e :NERDTree<CR>
 nmap <leader>c gcc
 vmap <leader>c gc
+" Multiple cursors {{{1
+nmap <S-C-n> <Plug>AllWholeOccurrences
+xmap <S-C-n> <Plug>AllWholeOccurrences
+nmap g<S-C-n> <Plug>AllOccurrences
+xmap g<S-C-n> <Plug>AllOccurrences
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+" 1}}}
+
 
 " Keybindings {{{
 " Make enter behave sensibly
@@ -27,16 +42,11 @@ nmap <leader>0o :edit ~/.ideavimrc<CR>
 
 " Useful shortcuts
 nmap ; :
+vmap ; :
 imap jj <Esc>
 nmap q :q<CR>
 nmap fq :q!<CR>
 nmap zz :wq!<CR>
-
-" Indentation
-nmap <Tab> >>_
-nmap <S-Tab> <<_
-vmap <Tab> >
-vnoremap <S-Tab> <
 
 " System clipboard
 vnoremap <leader>y "+y
@@ -54,7 +64,7 @@ nnoremap K 5k
 vmap J 5j
 vmap K 5k
 
-" " Tabs
+" Tabs
 nmap H gT
 nmap L gt
 
@@ -62,7 +72,7 @@ nmap L gt
 nmap <leader>\ :vsp<CR>
 nmap <leader>- :split<CR>
 
-" Split navigations (Ctrl-j down, Ctrl-k up, etc)
+" Split navigations 
 nnoremap <Down> <c-w><c-j>
 nnoremap <Up> <c-w><c-k>
 nnoremap <Right> <c-w><c-l>
@@ -75,7 +85,6 @@ noremap <Tab> >gv
 vnoremap <S-Tab> <gv
 " }}}
 
-
 " Jetbrains commands {{{1
 nmap <leader><space> :action ChooseRunConfiguration<CR>
 nmap <leader>d :action ChooseDebugConfiguration<CR>
@@ -87,6 +96,13 @@ nmap <leader>o :action RecentLocations<CR>
 nmap <leader>s :action GotoSymbol<CR>
 nmap <leader>l :action ExecuteInPyConsoleAction<CR>
 vmap <leader>l :action ExecuteInPyConsoleAction<CR>
+nmap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
+nmap <C-a>d :action ActivateDebugToolWindow<CR>
+nmap <C-a>t :action ActivateTerminalToolWindow<CR>
+nmap <leader>rn :action RenameElement<CR>
+nmap <leader>rb :action Tool_External Tools_Black<CR>
+nmap <leader>x :action GotoNextError<CR>
+nmap <leader>X :action GotoPreviousError<CR>
 " 1}}}
 
 " Folding {{{1

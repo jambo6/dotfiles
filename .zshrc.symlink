@@ -5,6 +5,8 @@ export PGUSER="postgres"
 export PATH=$PATH:/Library/PostgreSQL/13/bin
 export PATH=$PATH:/Users/jambo/.npm-global/bin
 export PATH=$PATH:/Applications/Julia-1.6.app/Contents/Resources/julia/bin
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
 export CC=gcc-8
 export CXX=g++-8
 # }}}
