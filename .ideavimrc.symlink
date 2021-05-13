@@ -99,10 +99,16 @@ vmap <leader>l :action ExecuteInPyConsoleAction<CR>
 nmap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
 nmap <C-a>d :action ActivateDebugToolWindow<CR>
 nmap <C-a>t :action ActivateTerminalToolWindow<CR>
+imap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
+imap <C-a>d :action ActivateDebugToolWindow<CR>
+imap <C-a>t :action ActivateTerminalToolWindow<CR>
+nmap <leader>rf :action ReformatCode<CR>
 nmap <leader>rn :action RenameElement<CR>
 nmap <leader>rb :action Tool_External Tools_Black<CR>
 nmap <leader>x :action GotoNextError<CR>
 nmap <leader>X :action GotoPreviousError<CR>
+nmap <leader>z :action ToggleDistractionFreeMode<CR>
+nmap <leader>Z :action ToggleZenMode<CR>
 " 1}}}
 
 " Folding {{{1
