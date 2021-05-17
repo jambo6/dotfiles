@@ -187,6 +187,10 @@ call plug#begin()
     " Xcode
     Plug 'arzg/vim-colors-xcode'
 
+    " Nord
+    Plug 'shaunsingh/nord.nvim'
+    Plug 'arcticicestudio/nord-vim'
+
     " Go
     Plug 'fatih/vim-go'
     " Go options 2{{{
@@ -294,8 +298,12 @@ call plug#end()
 " Colorscheme {{{
 set termguicolors
 set background=dark
-colorscheme xcodedark
-let g:airline_theme='xcodedark'
+" colorscheme xcodedark
+" let g:airline_theme='xcodedark'
+
+" Nord
+colorscheme nord
+let g:airline_theme='nord'
 
 function! ColorXcodeDark()
     set background=dark

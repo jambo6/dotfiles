@@ -47,6 +47,7 @@ imap jj <Esc>
 nmap q :q<CR>
 nmap fq :q!<CR>
 nmap zz :wq!<CR>
+nmap 4 $
 
 " System clipboard
 vnoremap <leader>y "+y
@@ -86,6 +87,7 @@ vnoremap <S-Tab> <gv
 " }}}
 
 " Jetbrains commands {{{1
+nmap / :action Find<CR>
 nmap <leader><space> :action ChooseRunConfiguration<CR>
 nmap <leader>d :action ChooseDebugConfiguration<CR>
 nmap <leader>b :action ToggleLineBreakpoint<CR>
