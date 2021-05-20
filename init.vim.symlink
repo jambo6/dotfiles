@@ -188,7 +188,6 @@ call plug#begin()
     Plug 'arzg/vim-colors-xcode'
 
     " Nord
-    Plug 'shaunsingh/nord.nvim'
     Plug 'arcticicestudio/nord-vim'
 
     " Go
@@ -328,6 +327,9 @@ nnoremap <CR> o<Esc>
 " Double esc is save
 map <Esc><Esc> :w<CR>
 
+" Go to the alternative buffer 
+nnoremap <bs> <c-^>
+
 " For opening initvim
 nmap <leader>0s :source ~/.config/nvim/init.vim<CR>
 nmap <leader>0o :edit ~/.config/nvim/init.vim<CR>
@@ -345,6 +347,9 @@ nmap <S-Tab> <<_
 vmap <Tab> >
 vnoremap <S-Tab> <
 
+" Line yank
+nmap Y y$
+
 " System clipboard
 vnoremap <leader>y "+y
 vnoremap <leader>Y "+yg_
@@ -360,10 +365,10 @@ nnoremap J 5j
 nnoremap K 5k
 vmap J 5j
 vmap K 5k
-
-" " Tabs
-nmap H gT
-nmap L gt
+nnoremap H ^
+nnoremap L $
+vmap H ^
+vmap L $
 
 " Splits
 nmap <leader>\ :vsp<CR>
@@ -380,6 +385,9 @@ nnoremap <Tab> >>_
 nnoremap <S-Tab> <<_
 noremap <Tab> >gv
 vnoremap <S-Tab> <gv
+
+" Folds
+nnoremap zo za
 
 " Length guide
 au FileType julia setlocal colorcolumn=120

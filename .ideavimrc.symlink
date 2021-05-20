@@ -64,10 +64,9 @@ nnoremap J 5j
 nnoremap K 5k
 vmap J 5j
 vmap K 5k
-
-" Tabs
-nmap H gT
-nmap L gt
+nmap H ^
+nmap L $
+nmap Y y$
 
 " Splits
 nmap <leader>\ :vsp<CR>
