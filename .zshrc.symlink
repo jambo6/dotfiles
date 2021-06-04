@@ -94,7 +94,7 @@ alias checkpython="ps -ef | grep python"
 alias killpython="pkill -9 python"
 alias jl="jupyter lab"
 alias jls="jupyter notebook list"
-# Conda
+# Virtualenv
 alias activate="conda activate ./env"
 alias base="conda activate base"
 
@@ -119,6 +119,7 @@ if type rg &> /dev/null; then
   export FZF_DEFAULT_OPTS='-m --height 50% --border'
 fi
 
+
 # Conda {{{
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -135,6 +136,7 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 # }}}
+conda activate base
 
 # export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # export PATH="$PATH:$(yarn global bin)"
