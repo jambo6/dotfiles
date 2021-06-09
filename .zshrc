@@ -11,6 +11,15 @@ export PATH=$PATH:/usr/local/bin/chromedriver
 export PATH=$PATH:$GOPATH/bin
 export CC=gcc-8
 export CXX=g++-8
+
+# Settings for Stanford CoreNLP
+export CORENLP_ROOT="/Users/jambo/Software/stanford-corenlp-4.2.1"
+export CLASSPATH="$CORENLP_ROOT/javanlp-core.jar"
+export CLASSPATH="$CLASSPATH:$CORENLP_ROOT/stanford-corenlp-models-current.jar"
+for file in `find $CORENLP_ROOT -name "*.jar"`
+do
+    export CLASSPATH="$CLASSPATH:`realpath $file`"
+done
 # }}}
 
 # zplug {{{1
@@ -44,7 +53,7 @@ zplug load
 
 # Aliases {{{1
 # Apps
-alias psql="pgcli"
+# alias psql="pgcli"
 alias lz="lazygit"
 alias vim="nvim"
 alias julia="/Applications/Julia-1.6.app/Contents/Resources/julia/bin/julia"

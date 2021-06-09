@@ -122,6 +122,8 @@ nmap <leader>X :action GotoPreviousError<CR>
 nmap <leader>z :action ToggleDistractionFreeMode<CR>
 nmap <leader>Z :action ToggleZenMode<CR>
 nmap gt :action GotoTest<CR>
+nmap mf :action NewFile<CR>
+nmap md :action NewDir<CR>
 " 1}}}
 
 " Folding {{{1
