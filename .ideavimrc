@@ -1,7 +1,5 @@
 let mapleader=","
 
-nmap <leader>l :action Julia.Tools.REPL.SendSelection<CR>
-vmap <leader>l :action Julia.Tools.REPL.SendSelection<CR>
 " Extensions
 set NERDTree
 set surround
