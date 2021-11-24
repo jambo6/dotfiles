@@ -1,0 +1,156 @@
+let mapleader=","
+
+" Extensions
+set NERDTree
+set surround
+set multiple-cursors
+set commentary
+set highlightedyank
+set easymotion
+
+" Extension options
+nmap <leader>e :NERDTree<CR>
+nmap <leader>c gcc
+vmap <leader>c gc
+" Multiple cursors {{{1
+nmap <S-C-n> <Plug>AllWholeOccurrences
+xmap <S-C-n> <Plug>AllWholeOccurrences
+nmap g<S-C-n> <Plug>AllOccurrences
+xmap g<S-C-n> <Plug>AllOccurrences
+nmap <C-n> <Plug>NextWholeOccurrence
+xmap <C-n> <Plug>NextWholeOccurrence
+nmap g<C-n> <Plug>NextOccurrence
+xmap g<C-n> <Plug>NextOccurrence
+nmap <C-x> <Plug>SkipOccurrence
+xmap <C-x> <Plug>SkipOccurrence
+nmap <C-p> <Plug>RemoveOccurrence
+xmap <C-p> <Plug>RemoveOccurrence
+" 1}}}
+" KJump to emulate sneak
+nmap s :action KJumpAction.Word1<CR>
+
+" Keybindings {{{
+" Make enter behave sensibly
+nnoremap <CR> o<Esc>
+
+" Double esc is save
+map <Esc><Esc> :w<CR>
+
+" Without this C-a increments numbers
+map <C-a> <Nop>
+
+" For opening initvim
+nmap <leader>0s :source ~/.ideavimrc<CR>
+nmap <leader>0o :edit ~/.ideavimrc<CR>
+
+" Useful shortcuts
+nmap ; :
+vmap ; :
+imap jj <Esc>
+nmap q :q<CR>
+nmap fq :q!<CR>
+nmap zz :wq!<CR>
+
+" Html
+nmap ci< cit
+nmap di< dit
+
+" System clipboard
+vnoremap <leader>y "+y
+vnoremap <leader>Y "+yg_
+nnoremap <leader>y "+y
+nnoremap <leader>Y "+yg_
+nnoremap <leader>p "+p
+nnoremap <leader>P "+pg_
+vnoremap <leader>p "+p
+vnoremap <leader>P "+pg_
+
+" Big jump
+nnoremap J 5j
+nnoremap K 5k
+vmap J 5j
+vmap K 5k
+"nmap H 5h
+"nmap L 5l
+"vmap H 5h
+"vmap L 5l
+nmap Y y$
+
+" Tab
+nmap L <Action>(NextTab)
+nmap H <Action>(PreviousTab)
+
+" Splits
+nmap <leader>\ :vsp<CR>
+nmap <leader>- :split<CR>
+
+" Split navigations
+nnoremap <Down> <c-w><c-j>
+nnoremap <Up> <c-w><c-k>
+nnoremap <Right> <c-w><c-l>
+nnoremap <Left> <c-w><c-h>
+
+" Indentation
+nnoremap <Tab> >>_
+nnoremap <S-Tab> <<_
+noremap <Tab> >gv
+vnoremap <S-Tab> <gv
+" }}}
+
+" Jetbrains commands {{{1
+nmap / :action Find<CR>
+nmap <leader><space> :action ChooseRunConfiguration<CR>
+nmap <leader>d :action ChooseDebugConfiguration<CR>
+nmap <leader><a-char-62> :action Resume<CR>
+nmap <leader>D :action Resume<CR>
+nmap <leader>b :action ToggleLineBreakpoint<CR>
+nmap <leader>f :action QuickJavaDoc<CR>
+nmap <leader>m :action GotoDeclaration<CR>
+nmap <leader>v :action GotoFile<CR>
+nmap <leader>o :action RecentLocations<CR>
+nmap <leader>s :action GotoSymbol<CR>
+nmap <leader>L ggvG<leader>l<Esc>
+nmap <leader>l <Action>(ExecuteInPyConsoleAction)<Action>(Julia.Tools.REPL.SendSelection)
+vmap <leader>l <Action>(ExecuteInPyConsoleAction)<Action>(Julia.Tools.REPL.SendSelection)
+nmap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
+nmap <C-a>d :action ActivateDebugToolWindow<CR>
+nmap <C-a>t :action ActivateTerminalToolWindow<CR>
+imap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
+imap <C-a>d :action ActivateDebugToolWindow<CR>
+imap <C-a>t :action ActivateTerminalToolWindow<CR>
+vmap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
+vmap <C-a>d :action ActivateDebugToolWindow<CR>
+vmap <C-a>t :action ActivateTerminalToolWindow<CR>
+nmap <leader><Enter> <Action>(ShowIntentionActions)
+nmap <leader>rf :action ReformatCode<CR><Action>(OptimizeImports)
+nmap <leader><leader> <action>(ReformatCode)
+nmap <leader>rb <Action>(Tool_External Tools_black)
+nmap <leader>ri <Action>(OptimizeImports)
+nmap <leader>rn :action RenameElement<CR>
+nmap <leader>x :action GotoNextError<CR>
+nmap <leader>X :action GotoPreviousError<CR>
+nmap ] :action GotoNextError<CR>
+nmap [ :action GotoPreviousError<CR>
+nmap <leader>j :action GotoNextError<CR>
+nmap <leader>k :action GotoPreviousError<CR>
+nmap <leader>z :action ToggleDistractionFreeMode<CR>
+nmap <leader>Z :action ToggleZenMode<CR>
+nmap gt :action GotoTest<CR>
+nmap mf :action NewFile<CR>
+nmap md :action NewDir<CR>
+" Copilot
+nmap <Space>\ <Action>(copilot.requestCompletions)
+nmap <Space>] <Action>(copilot.cycleNextInlays)
+nmap <Space>[ <Action>(copilot.cyclePrevInlays)
+nmap <Space>c <Action>(copilot.openCopilot)
+" 1}}}
+
+" Folding {{{1
+" This goes at the end otherwise something is overriding marker -> indent
+" folding
+set foldmethod=marker
+set timeoutlen=1000 ttimeoutlen=0
+hi Folded ctermfg=1
+set foldlevel=0
+" 1}}}
+
