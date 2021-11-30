@@ -10,6 +10,8 @@ alias ls='ls -G'
 # Confirms
 alias rm='rm -i'
 alias 'rm -f'='rm -f -i'
+alias 'rm -r'='rm -r -i'
+alias 'rm -rf'='rm -rf -i'
 alias cp='cp -i'
 alias mv='mv -i'
 

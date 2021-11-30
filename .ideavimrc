@@ -110,8 +110,8 @@ nmap <leader>v :action GotoFile<CR>
 nmap <leader>o :action RecentLocations<CR>
 nmap <leader>s :action GotoSymbol<CR>
 nmap <leader>L ggvG<leader>l<Esc>
-nmap <leader>l <Action>(ExecuteInPyConsoleAction)<Action>(Julia.Tools.REPL.SendSelection)
-vmap <leader>l <Action>(ExecuteInPyConsoleAction)<Action>(Julia.Tools.REPL.SendSelection)
+nmap <leader>l :action ExecuteInPyConsoleAction<CR>
+vmap <leader>l :action ExecuteInPyConsoleAction<CR>
 nmap <C-a>j :action ActivatePythonConsoleToolWindow<CR>
 nmap <C-a>d :action ActivateDebugToolWindow<CR>
 nmap <C-a>t :action ActivateTerminalToolWindow<CR>
@@ -138,6 +138,7 @@ nmap <leader>Z :action ToggleZenMode<CR>
 nmap gt :action GotoTest<CR>
 nmap mf :action NewFile<CR>
 nmap md :action NewDir<CR>
+nmap <leader>ro :action ToggleReadOnlyAttribute<CR>
 " Copilot
 nmap <Space>\ <Action>(copilot.requestCompletions)
 nmap <Space>] <Action>(copilot.cycleNextInlays)
