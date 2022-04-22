@@ -1,8 +1,10 @@
 # Alias some bash scripts
-alias pyproject="~/dotfiles/scripts/pyproject/pyproject.sh"
+alias pyproject="~/monorepo/dotfiles/scripts/pyproject/pyproject.sh"
+alias poetryreq="poetry export -f requirements.txt --output requirements.txt"
 
 # Easy peasy
 alias psql="pgcli"
+alias vim="nvim"
 
 # Colored ls
 alias ls='ls -G'
@@ -22,7 +24,7 @@ alias zshrc="cd ~/monorepo/dotfiles/zshrc"
 alias srczsh="source ~/.zshrc"
 alias gitconfig="vim ~/.gitconfig"
 alias initvim="vim ~/.config/nvim/init.vim"
-alias scripts="cd ~/scripts"
+alias scripts="cd ~/monorepo/dotfiles/scripts"
 
 alias psqlrc="vim ~/.psqlrc"
 alias pgpass="vim ~/.pgpass"

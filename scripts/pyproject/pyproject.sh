@@ -22,7 +22,7 @@ while getopts ":h" option; do
 done
 
 # Location of the script and the python project initialisers
-SCRIPT_DIR=~/scripts/bash/pyproject
+SCRIPT_DIR=~/monorepo/dotfiles/scripts/pyproject
 PROJECT_DIR=$1
 
 # New project with poetry and cd in
